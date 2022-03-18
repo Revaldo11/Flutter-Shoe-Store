@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => MyCustomSplashScreen(),
         '/sign-in': (context) => SignInScreen(),
         '/sign-up': (context) => SignUpScreen(),
-        '/home': (context) => HomePage(),
+        '/home': (context) => MainPage(),
       },
     );
   }
