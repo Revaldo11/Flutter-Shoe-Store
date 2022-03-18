@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/screens/home/chat.dart';
+import 'package:myshoe/screens/home/home.dart';
+import 'package:myshoe/screens/home/profile_page.dart';
+import 'package:myshoe/screens/home/wishlist_page.dart';
 import 'package:myshoe/theme.dart';
 
 class MainPage extends StatefulWidget {
@@ -31,13 +35,12 @@ class _MainPageState extends State<MainPage> {
         ),
         child: BottomAppBar(
           shape: CircularNotchedRectangle(),
-          notchMargin: 10,
+          notchMargin: 13,
           clipBehavior: Clip.antiAlias,
           child: BottomNavigationBar(
             currentIndex: currentIndex,
             onTap: (value) {
               setState(() {
-                print(value);
                 currentIndex = value;
               });
             },
@@ -45,34 +48,46 @@ class _MainPageState extends State<MainPage> {
             type: BottomNavigationBarType.fixed,
             items: [
               BottomNavigationBarItem(
-                icon: Image.asset(
-                  'assets/icon_home.png',
-                  color: currentIndex == 0 ? primaryColor : Color(0xff808191),
-                  width: 21,
+                icon: Container(
+                  margin: EdgeInsets.only(top: 20, bottom: 10),
+                  child: Image.asset(
+                    'assets/icon_home.png',
+                    color: currentIndex == 0 ? primaryColor : Color(0xff808191),
+                    width: 21,
+                  ),
                 ),
                 label: '',
               ),
               BottomNavigationBarItem(
-                icon: Image.asset(
-                  'assets/icon_chat.png',
-                  color: currentIndex == 1 ? primaryColor : Color(0xff808191),
-                  width: 20,
+                icon: Container(
+                  margin: EdgeInsets.only(top: 20, bottom: 10),
+                  child: Image.asset(
+                    'assets/icon_chat.png',
+                    color: currentIndex == 1 ? primaryColor : Color(0xff808191),
+                    width: 20,
+                  ),
                 ),
                 label: '',
               ),
               BottomNavigationBarItem(
-                icon: Image.asset(
-                  'assets/icon_favorite.png',
-                  color: currentIndex == 2 ? primaryColor : Color(0xff808191),
-                  width: 20,
+                icon: Container(
+                  margin: EdgeInsets.only(top: 20, bottom: 10),
+                  child: Image.asset(
+                    'assets/icon_favorite.png',
+                    color: currentIndex == 2 ? primaryColor : Color(0xff808191),
+                    width: 20,
+                  ),
                 ),
                 label: '',
               ),
               BottomNavigationBarItem(
-                icon: Image.asset(
-                  'assets/icon_profile.png',
-                  color: currentIndex == 3 ? primaryColor : Color(0xff808191),
-                  width: 18,
+                icon: Container(
+                  margin: EdgeInsets.only(top: 20, bottom: 10),
+                  child: Image.asset(
+                    'assets/icon_profile.png',
+                    color: currentIndex == 3 ? primaryColor : Color(0xff808191),
+                    width: 18,
+                  ),
                 ),
                 label: '',
               ),
@@ -82,18 +97,27 @@ class _MainPageState extends State<MainPage> {
       );
     }
 
-    // Widget body(){
-    //   return
-    // }
+    Widget body() {
+      switch (currentIndex) {
+        case 0:
+          return HomePage();
+        case 1:
+          return ChatPage();
+        case 2:
+          return WishlistPage();
+        case 3:
+          return ProfilePage();
+        default:
+          return HomePage();
+      }
+    }
 
     return Scaffold(
       floatingActionButton: buttonCart(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: customBottomNav(),
       backgroundColor: backgroundColor1,
-      body: Center(
-        child: Text('data'),
-      ),
+      body: body(),
     );
   }
 }
