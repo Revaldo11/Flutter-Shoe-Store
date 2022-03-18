@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/screens/sign_up_screen.dart';
 import 'package:myshoe/screens/sign_in_screen.dart';
 import 'package:myshoe/screens/splash_screen.dart';
 
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => SplashScreen(),
         '/sign-in': (context) => SignInScreen(),
+        '/sign-up': (context) => SignUpScreen(),
       },
     );
   }
