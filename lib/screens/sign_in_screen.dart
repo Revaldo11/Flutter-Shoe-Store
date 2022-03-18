@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myshoe/theme.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -119,6 +120,7 @@ class SignInScreen extends StatelessWidget {
                     Expanded(
                       child: TextFormField(
                         style: primaryTextStyle,
+                        obscureText: true,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Your Password',
                           hintStyle: subtitleTextStyle,
@@ -134,8 +136,60 @@ class SignInScreen extends StatelessWidget {
       );
     }
 
+    Widget signInButton() {
+      return Container(
+        height: 50.0,
+        width: double.infinity,
+        margin: EdgeInsets.only(top: 30.0),
+        child: TextButton(
+          onPressed: () {
+            Fluttertoast.showToast(
+                msg: "Sign In Button Pressed",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                // timeInSecForIosWeb: 1,
+                // backgroundColor: Colors.,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          },
+          style: TextButton.styleFrom(
+              backgroundColor: primaryColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              )),
+          child: Text(
+            "Sign In",
+            style: primaryTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: medium,
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget footer() {
+      return Container(
+        margin: EdgeInsets.only(bottom: 30.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Don\'t have an account? ',
+              style: subtitleTextStyle.copyWith(fontSize: 12),
+            ),
+            GestureDetector(
+              onTap: () => Navigator.pushNamed(context, '/sign-up'),
+              child: Text('Sign Up', style: purpelTextStyle),
+            ),
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
         backgroundColor: backgroundColor1,
+        resizeToAvoidBottomInset: false,
         body: Container(
           margin: EdgeInsets.symmetric(horizontal: defaultMargin),
           child: Column(
@@ -144,6 +198,9 @@ class SignInScreen extends StatelessWidget {
               header(),
               emailInput(),
               passwordInput(),
+              signInButton(),
+              Spacer(),
+              footer(),
             ],
           ),
         ));
