@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:myshoe/theme.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -143,14 +142,7 @@ class SignInScreen extends StatelessWidget {
         margin: EdgeInsets.only(top: 30.0),
         child: TextButton(
           onPressed: () {
-            Fluttertoast.showToast(
-                msg: "Sign In Button Pressed",
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.BOTTOM,
-                // timeInSecForIosWeb: 1,
-                // backgroundColor: Colors.,
-                textColor: Colors.white,
-                fontSize: 16.0);
+            Navigator.pushNamed(context, '/home');
           },
           style: TextButton.styleFrom(
               backgroundColor: primaryColor,

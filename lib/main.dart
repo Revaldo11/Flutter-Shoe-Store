@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/screens/home/main_page.dart';
 import 'package:myshoe/screens/sign_up_screen.dart';
 import 'package:myshoe/screens/sign_in_screen.dart';
 import 'package:myshoe/screens/custom_splash_screen.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => MyCustomSplashScreen(),
         '/sign-in': (context) => SignInScreen(),
         '/sign-up': (context) => SignUpScreen(),
+        '/home': (context) => HomePage(),
       },
     );
   }
