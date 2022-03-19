@@ -13,7 +13,7 @@ class ProductCard extends StatelessWidget {
       width: 215,
       height: 278,
       decoration: BoxDecoration(
-        color: whiteColor,
+        color: backgroundColorWhite,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
@@ -48,6 +48,7 @@ class ProductCard extends StatelessWidget {
                     fontSize: 18,
                     fontWeight: semiBold,
                   ),
+                  overflow: TextOverflow.ellipsis,
                 ),
                 SizedBox(
                   height: 6.0,
