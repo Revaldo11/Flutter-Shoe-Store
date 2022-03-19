@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myshoe/theme.dart';
 import 'package:myshoe/widgets/product_card.dart';
+import 'package:myshoe/widgets/product_tile.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -213,6 +214,37 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  Widget newArrivalsTitle() {
+    return Container(
+      margin: EdgeInsets.only(
+        top: defaultMargin,
+        left: defaultMargin,
+        right: defaultMargin,
+      ),
+      child: Text(
+        'New Product',
+        style: primaryTextStyle.copyWith(
+          fontSize: 22,
+          fontWeight: semiBold,
+        ),
+      ),
+    );
+  }
+
+  Widget newArrivals() {
+    return Container(
+      margin: EdgeInsets.only(top: 14),
+      child: Column(
+        children: [
+          ProductTile(),
+          ProductTile(),
+          ProductTile(),
+          ProductTile(),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -220,7 +252,9 @@ class HomePage extends StatelessWidget {
         header(),
         categories(),
         popularProductsTitle(),
-        popularProducts()
+        popularProducts(),
+        newArrivalsTitle(),
+        newArrivals(),
       ],
     );
   }
