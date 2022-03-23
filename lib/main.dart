@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/screens/detail_chat_screen.dart';
 import 'package:myshoe/screens/home/main_page.dart';
 import 'package:myshoe/screens/sign_up_screen.dart';
 import 'package:myshoe/screens/sign_in_screen.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         '/sign-in': (context) => SignInScreen(),
         '/sign-up': (context) => SignUpScreen(),
         '/home': (context) => MainPage(),
+        '/detail-chat': (context) => DetailChatPage(),
       },
     );
   }
