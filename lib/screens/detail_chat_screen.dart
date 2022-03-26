@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myshoe/theme.dart';
+import 'package:myshoe/widgets/chat_bubble.dart';
 
 class DetailChatPage extends StatelessWidget {
   const DetailChatPage({Key? key}) : super(key: key);
@@ -94,6 +95,24 @@ class DetailChatPage extends StatelessWidget {
       );
     }
 
+    Widget content() {
+      return ListView(
+        padding: EdgeInsets.symmetric(
+          horizontal: defaultMargin,
+        ),
+        children: [
+          ChatBubble(
+            text: 'Hi, This item is still available?',
+            isSender: true,
+          ),
+          ChatBubble(
+            text: 'Good night, This item is only available in size 42 and 43',
+            isSender: false,
+          ),
+        ],
+      );
+    }
+
     Widget chatInput() {
       return Container(
         margin: EdgeInsets.all(20),
@@ -135,6 +154,7 @@ class DetailChatPage extends StatelessWidget {
       backgroundColor: backgroundColor3,
       appBar: header(),
       bottomNavigationBar: chatInput(),
+      body: content(),
     );
   }
 }
