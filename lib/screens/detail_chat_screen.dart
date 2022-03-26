@@ -43,9 +43,40 @@ class DetailChatPage extends StatelessWidget {
       );
     }
 
+    Widget chatInput() {
+      return Container(
+        margin: EdgeInsets.all(20),
+        child: Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 45,
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: backgroundColor4,
+                ),
+                child: Center(
+                  child: TextFormField(
+                    decoration: InputDecoration.collapsed(
+                      hintText: 'Typle Message...',
+                      hintStyle: subtitleTextStyle,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(width: 20),
+            Image.asset('assets/button_send.png', width: 45),
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: backgroundColor3,
       appBar: header(),
+      bottomNavigationBar: chatInput(),
     );
   }
 }
