@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myshoe/theme.dart';
+import 'package:myshoe/widgets/wishlist_buble.dart';
 
 class WishlistPage extends StatelessWidget {
   const WishlistPage({Key? key}) : super(key: key);
@@ -70,10 +71,25 @@ class WishlistPage extends StatelessWidget {
       );
     }
 
+    Widget content() {
+      return Expanded(
+          child: Container(
+        color: backgroundColor3,
+        child: ListView(
+          children: [
+            WishlistBubble(),
+            WishlistBubble(),
+            WishlistBubble(),
+          ],
+        ),
+      ));
+    }
+
     return Column(
       children: [
         header(),
-        emptyWishlist(),
+        // emptyWishlist(),
+        content(),
       ],
     );
   }
