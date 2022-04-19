@@ -73,17 +73,18 @@ class WishlistPage extends StatelessWidget {
 
     Widget content() {
       return Expanded(
-          child: Container(
-        color: backgroundColor3,
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-          children: [
-            WishlistBubble(),
-            WishlistBubble(),
-            WishlistBubble(),
-          ],
+        child: Container(
+          color: backgroundColor3,
+          child: ListView(
+            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+            children: [
+              WishlistBubble(),
+              WishlistBubble(),
+              WishlistBubble(),
+            ],
+          ),
         ),
-      ));
+      );
     }
 
     return Column(
