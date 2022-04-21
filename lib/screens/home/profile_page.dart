@@ -39,13 +39,41 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
-              Image.asset(
-                'assets/icon_exit.png',
-                width: 20,
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/sign-in', (route) => false);
+                },
+                child: Image.asset(
+                  'assets/icon_exit.png',
+                  width: 20,
+                ),
               ),
             ],
           ),
         )),
+      );
+    }
+
+    Widget menuItems(String text) {
+      return Container(
+        padding: EdgeInsets.only(top: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              text,
+              style: secondaryTextStyle.copyWith(
+                fontWeight: reguler,
+                fontSize: 13,
+              ),
+            ),
+            Icon(
+              Icons.chevron_right,
+              color: primaryTextColor,
+            ),
+          ],
+        ),
       );
     }
 
@@ -66,13 +94,25 @@ class ProfilePage extends StatelessWidget {
                 style: primaryTextStyle.copyWith(
                     fontWeight: semiBold, fontSize: 16),
               ),
-              SizedBox(height: 16),
-              Text(
-                'Edit Profile',
-                style: subtitleTextStyle.copyWith(
-                  fontSize: 14,
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/edit-profile');
+                },
+                child: menuItems(
+                  'Edit Profile',
                 ),
               ),
+              menuItems('Your Orders'),
+              menuItems('Help'),
+              SizedBox(height: 30),
+              Text(
+                'General',
+                style: primaryTextStyle.copyWith(
+                    fontWeight: semiBold, fontSize: 16),
+              ),
+              menuItems('Privacy & Policy'),
+              menuItems('Term of Service'),
+              menuItems('Rate App'),
             ],
           ),
         ),
