@@ -39,11 +39,12 @@ class HomePage extends StatelessWidget {
             width: 44,
             height: 54,
             decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: AssetImage('assets/image_profile.png'),
-                )),
-          )
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: AssetImage('assets/image_profile.png'),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -191,9 +192,7 @@ class HomePage extends StatelessWidget {
 
   Widget popularProducts() {
     return Container(
-      margin: EdgeInsets.only(
-        top: 14,
-      ),
+      margin: EdgeInsets.only(top: 14),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
