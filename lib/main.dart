@@ -5,6 +5,8 @@ import 'package:myshoe/screens/sign_up_screen.dart';
 import 'package:myshoe/screens/sign_in_screen.dart';
 import 'package:myshoe/screens/custom_splash_screen.dart';
 
+import 'screens/edit_profile_screen.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget {
         '/sign-up': (context) => SignUpScreen(),
         '/home': (context) => MainPage(),
         '/detail-chat': (context) => DetailChatPage(),
+        '/edit-profile': (context) => EditProfileScreen(),
       },
     );
   }
