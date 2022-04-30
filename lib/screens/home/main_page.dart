@@ -116,7 +116,7 @@ class _MainPageState extends State<MainPage> {
       floatingActionButton: buttonCart(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: customBottomNav(),
-      backgroundColor: backgroundColor1,
+      backgroundColor: currentIndex == 0 ? backgroundColor1 : backgroundColor3,
       body: body(),
     );
   }

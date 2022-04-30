@@ -9,7 +9,7 @@ class WishlistPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget header() {
       return AppBar(
-        backgroundColor: backgroundColor3,
+        backgroundColor: backgroundColor1,
         title: Text('Favorite Items'),
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -20,7 +20,7 @@ class WishlistPage extends StatelessWidget {
       return Expanded(
         child: Container(
           width: double.infinity,
-          color: backgroundColor1,
+          color: backgroundColor3,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
