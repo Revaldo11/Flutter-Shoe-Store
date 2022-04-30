@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myshoe/screens/detail_chat_screen.dart';
 import 'package:myshoe/screens/home/main_page.dart';
+import 'package:myshoe/screens/product_screen.dart';
 import 'package:myshoe/screens/sign_up_screen.dart';
 import 'package:myshoe/screens/sign_in_screen.dart';
 import 'package:myshoe/screens/custom_splash_screen.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => MainPage(),
         '/detail-chat': (context) => DetailChatPage(),
         '/edit-profile': (context) => EditProfileScreen(),
+        '/product': (context) => ProductScreen(),
       },
     );
   }
