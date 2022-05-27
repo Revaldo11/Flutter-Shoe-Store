@@ -31,9 +31,82 @@ class _ProductScreenState extends State<ProductScreen> {
   ];
 
   int currrentIndex = 0;
+  bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
+    Future<void> showSuccessDialog() async {
+      return showDialog<void>(
+        context: context,
+        builder: (BuildContext contex) => Container(
+          width: MediaQuery.of(context).size.width - (2 * defaultMargin),
+          child: AlertDialog(
+            backgroundColor: backgroundColor3,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            content: SingleChildScrollView(
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Icon(
+                        Icons.close,
+                        color: primaryTextColor,
+                      ),
+                    ),
+                  ),
+                  Image.asset(
+                    'assets/icon_success.png',
+                    width: 100,
+                  ),
+                  SizedBox(height: 12),
+                  Text(
+                    'Success',
+                    style: primaryTextStyle.copyWith(
+                        fontWeight: semiBold, fontSize: 18),
+                  ),
+                  SizedBox(height: 12),
+                  Text(
+                    'Item added successfully',
+                    style: secondaryTextStyle.copyWith(
+                      fontWeight: reguler,
+                      fontSize: 14,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    height: 44,
+                    width: 154,
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        backgroundColor: primaryColor,
+                      ),
+                      child: Text(
+                        'View My Cart',
+                        style: primaryTextStyle.copyWith(
+                          fontWeight: medium,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
     Widget indicator(int index) {
       return Container(
         width: currrentIndex == index ? 16 : 4,
@@ -155,9 +228,38 @@ class _ProductScreenState extends State<ProductScreen> {
                       ],
                     ),
                   ),
-                  Image.asset(
-                    'assets/icon_circle_favorite.png',
-                    width: 46,
+                  GestureDetector(
+                    onTap: () => setState(() {
+                      isFavorite = !isFavorite;
+
+                      if (isFavorite) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: secondaryColor,
+                            content: Text(
+                              'Has been added to the Favorite',
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: alertColor,
+                            content: Text(
+                              'Has been added to the Favorite',
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      }
+                    }),
+                    child: Image.asset(
+                      isFavorite
+                          ? 'assets/icon_circle_favorite_red.png'
+                          : 'assets/icon_circle_favorite.png',
+                      width: 46,
+                    ),
                   ),
                 ],
               ),
@@ -263,12 +365,15 @@ class _ProductScreenState extends State<ProductScreen> {
               margin: EdgeInsets.all(defaultMargin),
               child: Row(
                 children: [
-                  Container(
-                    width: 54,
-                    height: 54,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/button_chat.png'),
+                  GestureDetector(
+                    onTap: () => {Navigator.pushNamed(context, '/detail-chat')},
+                    child: Container(
+                      width: 54,
+                      height: 54,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/button_chat.png'),
+                        ),
                       ),
                     ),
                   ),
@@ -277,7 +382,9 @@ class _ProductScreenState extends State<ProductScreen> {
                     child: Container(
                       height: 54,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showSuccessDialog();
+                        },
                         style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
