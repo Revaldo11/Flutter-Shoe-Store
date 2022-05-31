@@ -90,11 +90,16 @@ class _ProductScreenState extends State<ProductScreen> {
                         ),
                         backgroundColor: primaryColor,
                       ),
-                      child: Text(
-                        'View My Cart',
-                        style: primaryTextStyle.copyWith(
-                          fontWeight: medium,
-                          fontSize: 16,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/cart');
+                        },
+                        child: Text(
+                          'View My Cart',
+                          style: primaryTextStyle.copyWith(
+                            fontWeight: medium,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                     ),
