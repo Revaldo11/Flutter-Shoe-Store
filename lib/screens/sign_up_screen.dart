@@ -281,21 +281,24 @@ class SignUpScreen extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: backgroundColor1,
-        resizeToAvoidBottomInset: false,
-        body: Container(
-          margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              header(),
-              fullNameInput(),
-              usernameInput(),
-              emailInput(),
-              passwordInput(),
-              signUpButton(),
-              Spacer(),
-              footer(),
-            ],
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                header(),
+                fullNameInput(),
+                usernameInput(),
+                emailInput(),
+                passwordInput(),
+                signUpButton(),
+                Spacer(),
+                footer(),
+              ],
+            ),
           ),
         ));
   }

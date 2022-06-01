@@ -181,19 +181,22 @@ class SignInScreen extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: backgroundColor1,
-        resizeToAvoidBottomInset: false,
-        body: Container(
-          margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              header(),
-              emailInput(),
-              passwordInput(),
-              signInButton(),
-              Spacer(),
-              footer(),
-            ],
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                header(),
+                emailInput(),
+                passwordInput(),
+                signInButton(),
+                Spacer(),
+                footer(),
+              ],
+            ),
           ),
         ));
   }

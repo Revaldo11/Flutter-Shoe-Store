@@ -96,21 +96,32 @@ class DetailChatPage extends StatelessWidget {
     }
 
     Widget content() {
-      return ListView(
-        padding: EdgeInsets.symmetric(
-          horizontal: defaultMargin,
+      return Expanded(
+        child: ListView(
+          padding: EdgeInsets.symmetric(
+            horizontal: defaultMargin,
+          ),
+          children: [
+            ChatBubble(
+              text: 'Hi, This item is still available?',
+              isSender: true,
+              hasProduct: true,
+            ),
+            ChatBubble(
+              text: 'Good night, This item is only available in size 42 and 43',
+              isSender: false,
+            ),
+            ChatBubble(
+              text: 'Hi, This item is still available?',
+              isSender: true,
+              hasProduct: true,
+            ),
+            ChatBubble(
+              text: 'Good night, This item is only available in size 42 and 43',
+              isSender: false,
+            ),
+          ],
         ),
-        children: [
-          ChatBubble(
-            text: 'Hi, This item is still available?',
-            isSender: true,
-            hasProduct: true,
-          ),
-          ChatBubble(
-            text: 'Good night, This item is only available in size 42 and 43',
-            isSender: false,
-          ),
-        ],
       );
     }
 
@@ -154,8 +165,23 @@ class DetailChatPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: backgroundColor3,
       appBar: header(),
-      bottomNavigationBar: chatInput(),
-      body: content(),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.only(
+            top: defaultMargin,
+          ),
+          // height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height -
+              header().preferredSize.height -
+              defaultMargin,
+          child: Column(
+            children: [
+              content(),
+              chatInput(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
