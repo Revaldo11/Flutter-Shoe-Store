@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myshoe/screens/cart_screen.dart';
+import 'package:myshoe/screens/checkout_screen.dart';
 import 'package:myshoe/screens/detail_chat_screen.dart';
 import 'package:myshoe/screens/home/main_page.dart';
 import 'package:myshoe/screens/detail_product_screen.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         '/edit-profile': (context) => EditProfileScreen(),
         '/product': (context) => ProductScreen(),
         '/cart': (context) => CartScreen(),
+        '/checkout': (context) => CheckoutScreen(),
       },
     );
   }
