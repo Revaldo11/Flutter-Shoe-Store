@@ -22,9 +22,11 @@ class CheckoutScreen extends StatelessWidget {
 
     Widget content() {
       return ListView(
+        padding: EdgeInsets.symmetric(horizontal: defaultMargin),
         children: [
+          // NOTE:LIST ITEMS
           Container(
-            margin: EdgeInsets.all(defaultMargin),
+            margin: EdgeInsets.only(top: defaultMargin),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -38,6 +40,81 @@ class CheckoutScreen extends StatelessWidget {
                 SizedBox(height: 12),
                 CheckoutCard(),
                 CheckoutCard(),
+              ],
+            ),
+          ),
+
+          // NOTE : ADDRESS
+          Container(
+            margin: EdgeInsets.only(top: defaultMargin),
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: backgroundColor4,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Address Details',
+                  style: primaryTextStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: medium,
+                  ),
+                ),
+                SizedBox(height: 12),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Image.asset(
+                          'assets/icon_store_location.png',
+                          width: 40,
+                        ),
+                        Image.asset(
+                          'assets/icon_line.png',
+                          height: 30,
+                        ),
+                        Image.asset(
+                          'assets/icon_your_address.png',
+                          width: 40,
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: 12),
+                    Column(
+                      children: [
+                        Text(
+                          'Store Location',
+                          style: subtitleTextStyle.copyWith(
+                            fontSize: 12,
+                            fontWeight: light,
+                          ),
+                        ),
+                        Text(
+                          'Adidas Core',
+                          style: primaryTextStyle.copyWith(
+                            fontWeight: medium,
+                          ),
+                        ),
+                        SizedBox(height: defaultMargin),
+                        Text(
+                          'Your Address',
+                          style: subtitleTextStyle.copyWith(
+                            fontSize: 12,
+                            fontWeight: light,
+                          ),
+                        ),
+                        Text(
+                          'Marsemoon',
+                          style: primaryTextStyle.copyWith(
+                            fontWeight: medium,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
               ],
             ),
           ),
