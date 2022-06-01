@@ -28,8 +28,6 @@ class _CartCardState extends State<CartCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: 110,
-      // width: 315,
       margin: EdgeInsets.only(top: defaultMargin),
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
