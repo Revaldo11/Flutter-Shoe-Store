@@ -236,7 +236,10 @@ class CheckoutScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/checkout_success', (route) => false);
+              },
               child: Text(
                 'Checkout Now',
                 style: primaryTextStyle.copyWith(
