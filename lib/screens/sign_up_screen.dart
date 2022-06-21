@@ -1,11 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/providers/auth_povider.dart';
 import 'package:myshoe/theme.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+  SignUpScreen({Key? key}) : super(key: key);
+
+  TextEditingController nameController = TextEditingController(text: '');
+  TextEditingController usernameController = TextEditingController(text: '');
+  TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    _hendleSignUp() async {
+      if (await authProvider.register(
+        nameController.text,
+        usernameController.text,
+        emailController.text,
+        passwordController.text,
+      )) {
+        Navigator.pushNamed(context, '/home');
+      }
+    }
+
     Widget header() {
       return SafeArea(
         child: Container(
@@ -68,6 +88,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     Expanded(
                         child: TextFormField(
+                      controller: nameController,
                       style: primaryTextStyle,
                       decoration: InputDecoration.collapsed(
                         hintText: 'Your Full Name',
@@ -118,6 +139,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     Expanded(
                         child: TextFormField(
+                      controller: usernameController,
                       style: primaryTextStyle,
                       decoration: InputDecoration.collapsed(
                         hintText: 'Your Username',
@@ -168,6 +190,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     Expanded(
                         child: TextFormField(
+                      controller: emailController,
                       style: primaryTextStyle,
                       decoration: InputDecoration.collapsed(
                         hintText: 'Your email Address',
@@ -218,6 +241,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     Expanded(
                       child: TextFormField(
+                        controller: passwordController,
                         style: primaryTextStyle,
                         obscureText: true,
                         decoration: InputDecoration.collapsed(
@@ -241,9 +265,7 @@ class SignUpScreen extends StatelessWidget {
         width: double.infinity,
         margin: EdgeInsets.only(top: 30.0),
         child: TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/home');
-          },
+          onPressed: _hendleSignUp,
           style: TextButton.styleFrom(
               backgroundColor: primaryColor,
               shape: RoundedRectangleBorder(

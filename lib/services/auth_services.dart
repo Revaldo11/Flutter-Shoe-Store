@@ -33,6 +33,8 @@ class AuthService {
       body: body,
     );
 
+    print(response.body);
+
     if (response.statusCode == 200) {
       var data = json.decode(response.body)["data"];
       UserModel user = UserModel.fromJson(data["user"]);
