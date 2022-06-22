@@ -26,7 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
-    hendleSignUp() async {
+    handleSignUp() async {
       setState(() {
         isLoading = true;
       });
@@ -294,7 +294,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         width: double.infinity,
         margin: EdgeInsets.only(top: 30.0),
         child: TextButton(
-          onPressed: hendleSignUp,
+          onPressed: handleSignUp,
           style: TextButton.styleFrom(
               backgroundColor: primaryColor,
               shape: RoundedRectangleBorder(
