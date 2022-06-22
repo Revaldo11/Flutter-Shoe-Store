@@ -1,21 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:myshoe/providers/auth_povider.dart';
 import 'package:myshoe/theme.dart';
+import 'package:myshoe/widgets/loading_button.dart';
 import 'package:provider/provider.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   SignUpScreen({Key? key}) : super(key: key);
 
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController nameController = TextEditingController(text: '');
+
   TextEditingController usernameController = TextEditingController(text: '');
+
   TextEditingController emailController = TextEditingController(text: '');
+
   TextEditingController passwordController = TextEditingController(text: '');
+
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
-    _hendleSignUp() async {
+    hendleSignUp() async {
+      setState(() {
+        isLoading = true;
+      });
+
       if (await authProvider.register(
         nameController.text,
         usernameController.text,
@@ -23,7 +38,21 @@ class SignUpScreen extends StatelessWidget {
         passwordController.text,
       )) {
         Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: Text(
+              'Gagal Register',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
       }
+
+      setState(() {
+        isLoading = false;
+      });
     }
 
     Widget header() {
@@ -265,7 +294,7 @@ class SignUpScreen extends StatelessWidget {
         width: double.infinity,
         margin: EdgeInsets.only(top: 30.0),
         child: TextButton(
-          onPressed: _hendleSignUp,
+          onPressed: hendleSignUp,
           style: TextButton.styleFrom(
               backgroundColor: primaryColor,
               shape: RoundedRectangleBorder(
@@ -316,7 +345,7 @@ class SignUpScreen extends StatelessWidget {
                 usernameInput(),
                 emailInput(),
                 passwordInput(),
-                signUpButton(),
+                isLoading ? LoadingButton() : signUpButton(),
                 Spacer(),
                 footer(),
               ],

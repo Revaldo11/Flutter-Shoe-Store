@@ -33,7 +33,7 @@ class AuthService {
       body: body,
     );
 
-    print(response.body);
+    debugPrint(response.body);
 
     if (response.statusCode == 200) {
       var data = json.decode(response.body)["data"];
@@ -41,9 +41,7 @@ class AuthService {
       user.token = "Bearer " + data["access_token"];
       return user;
     } else {
-      throw Exception(
-        json.decode(response.body)["Gagal Register"],
-      );
+      throw Exception("Gagal Register");
     }
   }
 }
