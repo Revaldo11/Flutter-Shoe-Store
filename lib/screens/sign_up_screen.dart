@@ -32,18 +32,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
       });
 
       if (await authProvider.register(
-        nameController.text,
-        usernameController.text,
-        emailController.text,
-        passwordController.text,
+        name: nameController.text,
+        username: usernameController.text,
+        email: emailController.text,
+        password: passwordController.text,
       )) {
-        Navigator.pushNamed(context, '/home');
+        Navigator.pop(context);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: alertColor,
             content: Text(
-              'Gagal Register',
+              'Gagal Register!',
               textAlign: TextAlign.center,
             ),
           ),

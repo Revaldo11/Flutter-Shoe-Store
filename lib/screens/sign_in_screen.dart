@@ -24,8 +24,8 @@ class _SignInScreenState extends State<SignInScreen> {
       });
 
       if (await authProvider.login(
-        emailController.text,
-        passwordController.text,
+        email: emailController.text,
+        password: passwordController.text,
       )) {
         Navigator.pushNamed(context, '/home');
       } else {
@@ -33,7 +33,7 @@ class _SignInScreenState extends State<SignInScreen> {
           SnackBar(
             backgroundColor: alertColor,
             content: Text(
-              'Gagal Register',
+              'Gagal Login',
               textAlign: TextAlign.center,
             ),
           ),
