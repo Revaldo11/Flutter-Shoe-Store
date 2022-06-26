@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/models/users_model.dart';
+import 'package:myshoe/providers/auth_povider.dart';
 import 'package:myshoe/theme.dart';
+import 'package:provider/provider.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
     Widget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
@@ -16,9 +26,17 @@ class ProfilePage extends StatelessWidget {
           padding: EdgeInsets.all(defaultMargin),
           child: Row(
             children: [
-              Image.asset(
-                'assets/image_profile.png',
+              Container(
                 width: 64,
+                height: 64,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      user.profilePhotoUrl,
+                    ),
+                  ),
+                ),
               ),
               SizedBox(width: 16),
               Expanded(
@@ -26,14 +44,14 @@ class ProfilePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Hallo, Valen',
+                      'Hallo, ${user.name}',
                       style: primaryTextStyle.copyWith(
                         fontSize: 24,
                         fontWeight: semiBold,
                       ),
                     ),
                     Text(
-                      '@valentyty',
+                      '@${user.username}',
                       style: subtitleTextStyle.copyWith(fontSize: 16),
                     )
                   ],

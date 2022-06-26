@@ -3,15 +3,15 @@ class UserModel {
   String? name;
   String? email;
   String? username;
-  String? profilePhotoUrl;
+  late String profilePhotoUrl;
   String? token;
 
   UserModel({
-    this.id,
+    required this.id,
     this.name,
     this.email,
     this.username,
-    this.profilePhotoUrl,
+    required this.profilePhotoUrl,
     this.token,
   });
 

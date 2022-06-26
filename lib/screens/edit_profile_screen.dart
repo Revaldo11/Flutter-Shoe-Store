@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/models/users_model.dart';
+import 'package:myshoe/providers/auth_povider.dart';
 import 'package:myshoe/theme.dart';
+import 'package:provider/provider.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
     PreferredSizeWidget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
@@ -48,7 +53,7 @@ class EditProfileScreen extends StatelessWidget {
             TextField(
               style: primaryTextStyle,
               decoration: InputDecoration(
-                hintText: 'Valentino',
+                hintText: user.name,
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -78,7 +83,7 @@ class EditProfileScreen extends StatelessWidget {
             TextField(
               style: primaryTextStyle,
               decoration: InputDecoration(
-                hintText: '@valentino',
+                hintText: '@${user.username}',
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -108,7 +113,7 @@ class EditProfileScreen extends StatelessWidget {
             TextField(
               style: primaryTextStyle,
               decoration: InputDecoration(
-                hintText: 'valen@tino.com',
+                hintText: user.email,
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -138,8 +143,9 @@ class EditProfileScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage(
-                    'assets/image_profile.png',
+                  fit: BoxFit.fill,
+                  image: NetworkImage(
+                    user.profilePhotoUrl,
                   ),
                 ),
               ),
@@ -152,11 +158,16 @@ class EditProfileScreen extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      backgroundColor: backgroundColor3,
-      appBar: header(),
-      body: content(),
-      resizeToAvoidBottomInset: false,
+    return SingleChildScrollView(
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Scaffold(
+          backgroundColor: backgroundColor3,
+          appBar: header(),
+          body: content(),
+        ),
+      ),
     );
   }
 }
