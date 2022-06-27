@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:myshoe/providers/product_provider.dart';
 import 'package:myshoe/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MyCustomSplashScreen extends StatefulWidget {
   const MyCustomSplashScreen({Key? key}) : super(key: key);
@@ -49,12 +51,18 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
       });
     });
 
-    Timer(Duration(seconds: 4), () {
-      setState(() {
-        Timer(Duration(seconds: 1),
-            () => Navigator.pushNamed(context, '/sign-in'));
-      });
-    });
+    getInit();
+    // Timer(Duration(seconds: 4), () {
+    //   setState(() {
+    //     Timer(Duration(seconds: 1),
+    //         () => Navigator.pushNamed(context, '/sign-in'));
+    //   });
+    // });
+  }
+
+  getInit()async{
+    await Provider.of<ProductProvider>(context, listen: false).getProducts();
+    Navigator.pushNamed(context, '/sign-in');
   }
 
   @override

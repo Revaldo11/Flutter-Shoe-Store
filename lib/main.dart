@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myshoe/providers/auth_povider.dart';
+import 'package:myshoe/providers/product_provider.dart';
 import 'package:myshoe/screens/cart_screen.dart';
 import 'package:myshoe/screens/checkout_screen.dart';
 import 'package:myshoe/screens/checkout_success.dart';
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (contex) => AuthProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => ProductProvider(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
