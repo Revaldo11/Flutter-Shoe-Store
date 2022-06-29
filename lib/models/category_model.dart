@@ -11,7 +11,7 @@ class CategoryModel {
     name = json['name'];
   }
 
-  Map<String, dynamic> tojson(){
+  Map<String, dynamic> toJson(){
     return{
       'id':id,
       'name':name,

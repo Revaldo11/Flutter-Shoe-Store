@@ -24,28 +24,28 @@ class ProductModel {
     required this.updatedAt,
   });
 
-  ProductModel.fromjson(Map<String, dynamic> json) {
+  ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     price = double.parse(json['price'].toString());
     description = json['description'];
     category = CategoryModel.fromJson(json['category']);
     galleries = json['galleries']
-        .map<GalleryModel>((gallery) => GalleryModel.fromjson(gallery))
+        .map<GalleryModel>((gallery) => GalleryModel.fromJson(gallery))
         .toList();
     tags = json['tags'];
     createdAt = DateTime.parse(json['created_at']);
     updatedAt = DateTime.parse(json['updated_at']);
   }
 
-  Map<String, dynamic> tojson() {
+  Map<String, dynamic> toJson() {
     return {
       'id': id,
       'name': name,
       'price': price,
       'description': description,
-      'category': category.tojson(),
-      'galleries': galleries.map((gallery) => gallery.tojson()).toList(),
+      'category': category.toJson(),
+      'galleries': galleries.map((gallery) => gallery.toJson()).toList(),
       'tags': tags,
       'created_at': createdAt.toString(),
       'updated_at': updatedAt.toString(),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/models/product_model.dart';
 import 'package:myshoe/theme.dart';
 
 class ProductTile extends StatelessWidget {
-  const ProductTile({Key? key}) : super(key: key);
+  const ProductTile({Key? key, required this.product}) : super(key: key);
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +19,8 @@ class ProductTile extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
-                'assets/image_shoe.png',
+              child: Image.network(
+                product.galleries[0].url,
                 width: 120,
                 height: 120,
                 fit: BoxFit.cover,
