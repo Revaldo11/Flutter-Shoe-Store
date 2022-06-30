@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:myshoe/providers/auth_povider.dart';
 import 'package:myshoe/providers/product_provider.dart';
+import 'package:myshoe/providers/wishlist_provider.dart';
 import 'package:myshoe/screens/cart_screen.dart';
 import 'package:myshoe/screens/checkout_screen.dart';
 import 'package:myshoe/screens/checkout_success.dart';
 import 'package:myshoe/screens/detail_chat_screen.dart';
 import 'package:myshoe/screens/edit_profile_screen.dart';
 import 'package:myshoe/screens/home/main_page.dart';
-import 'package:myshoe/screens/detail_product_screen.dart';
 import 'package:myshoe/screens/sign_up_screen.dart';
 import 'package:myshoe/screens/sign_in_screen.dart';
 import 'package:myshoe/screens/custom_splash_screen.dart';
@@ -23,11 +23,14 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (contex) => AuthProvider(),
+          create: (context) => AuthProvider(),
         ),
         ChangeNotifierProvider(
           create: (context) => ProductProvider(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => WishlistProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

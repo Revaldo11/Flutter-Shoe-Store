@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:myshoe/models/product_model.dart';
+import 'package:myshoe/providers/wishlist_provider.dart';
 import 'package:myshoe/theme.dart';
+import 'package:provider/provider.dart';
 
 class ProductScreen extends StatefulWidget {
   ProductScreen({Key? key, required this.product}) : super(key: key);
@@ -19,25 +21,13 @@ class _ProductScreenState extends State<ProductScreen> {
     'assets/image_shoe.png'
   ];
 
-  List familiarShoe = [
-    'assets/image_shoe.png',
-    'assets/image_shoe.png',
-    'assets/image_shoe.png',
-    'assets/image_shoe.png',
-    'assets/image_shoe.png',
-    'assets/image_shoe.png',
-    'assets/image_shoe.png',
-    'assets/image_shoe.png',
-    'assets/image_shoe.png',
-    'assets/image_shoe.png',
-    'assets/image_shoe.png',
-  ];
-
   int currrentIndex = 0;
-  bool isFavorite = false;
+  bool isFavorite=false;
 
   @override
   Widget build(BuildContext context) {
+    
+    WishlistProvider wishlistProvider=Provider.of<WishlistProvider>(context);
     Future<void> showSuccessDialog() async {
       return showDialog<void>(
         context: context,
@@ -181,22 +171,7 @@ class _ProductScreenState extends State<ProductScreen> {
       );
     }
 
-    Widget familiarCard(String imageUrl) {
-      return Container(
-        width: 54,
-        height: 54,
-        margin: EdgeInsets.only(right: 16),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(imageUrl),
-          ),
-          borderRadius: BorderRadius.circular(6),
-        ),
-      );
-    }
-
     Widget content() {
-      int index = -1;
       return Container(
         margin: EdgeInsets.only(top: 17),
         width: double.infinity,
@@ -237,10 +212,10 @@ class _ProductScreenState extends State<ProductScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => setState(() {
-                      isFavorite = !isFavorite;
+                    onTap: () {
+                      wishlistProvider.setProduct(widget.product);
 
-                      if (isFavorite) {
+                      if (wishlistProvider.isWishlist(widget.product)) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             backgroundColor: secondaryColor,
@@ -261,9 +236,9 @@ class _ProductScreenState extends State<ProductScreen> {
                           ),
                         );
                       }
-                    }),
+                    },
                     child: Image.asset(
-                      isFavorite
+                      wishlistProvider.isWishlist(widget.product)
                           ? 'assets/icon_circle_favorite_red.png'
                           : 'assets/icon_circle_favorite.png',
                       width: 46,

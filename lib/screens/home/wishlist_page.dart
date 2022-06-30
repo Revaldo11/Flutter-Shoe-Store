@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/providers/wishlist_provider.dart';
 import 'package:myshoe/theme.dart';
 import 'package:myshoe/widgets/wishlist_buble.dart';
+import 'package:provider/provider.dart';
 
 class WishlistPage extends StatelessWidget {
   const WishlistPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
     Widget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
@@ -77,11 +80,9 @@ class WishlistPage extends StatelessWidget {
           color: backgroundColor3,
           child: ListView(
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-            children: [
-              WishlistBubble(),
-              WishlistBubble(),
-              WishlistBubble(),
-            ],
+            children: wishlistProvider.wishlist
+                .map((product) => WishlistBubble(product: product))
+                .toList(),
           ),
         ),
       );
@@ -90,8 +91,7 @@ class WishlistPage extends StatelessWidget {
     return Column(
       children: [
         header(),
-        emptyWishlist(),
-        // content(),
+        wishlistProvider.wishlist.isEmpty ? emptyWishlist() : content(),
       ],
     );
   }

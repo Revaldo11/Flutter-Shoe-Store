@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/models/product_model.dart';
+import 'package:myshoe/providers/product_provider.dart';
+import 'package:myshoe/providers/wishlist_provider.dart';
 import 'package:myshoe/theme.dart';
+import 'package:provider/provider.dart';
 
 class WishlistBubble extends StatelessWidget {
-  const WishlistBubble({Key? key}) : super(key: key);
+  const WishlistBubble({Key? key, required this.product}) : super(key: key);
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
+    WishlistProvider wishlistProvider=Provider.of<WishlistProvider>(context);
     return Container(
       margin: EdgeInsets.only(top: 20),
       padding: EdgeInsets.only(top: 10, left: 12, bottom: 24, right: 20),
@@ -17,8 +23,8 @@ class WishlistBubble extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              'assets/image_shoe.png',
+            child: Image.network(
+              product.galleries[0].url,
               width: 60,
             ),
           ),
@@ -28,18 +34,26 @@ class WishlistBubble extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Predator 20.3 Firm Ground Boots',
+                  product.name,
                   style: primaryTextStyle.copyWith(fontWeight: medium),
                 ),
                 SizedBox(height: 2),
                 Text(
-                  '\$68,98',
+                  '\$${product.price}',
                   style: priceTextStyle,
                 )
               ],
             ),
           ),
-          Image.asset('assets/icon_circle_favorite_active.png', width: 34),
+          GestureDetector(
+            onTap: (){
+              wishlistProvider.setProduct(product);
+            },
+            child: Image.asset(
+              'assets/icon_circle_favorite_active.png',
+              width: 34,
+            ),
+          ),
         ],
       ),
     );
