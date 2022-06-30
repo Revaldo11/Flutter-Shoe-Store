@@ -4,7 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:myshoe/models/product_model.dart';
 
 class ProductService {
-  var baseUrl = 'http://myshoe-api.revaldoputra.my.id/api';
+  // var baseUrl = 'https://myshoe-api.revaldoputra.my.id/api';
+  var baseUrl = 'https://shamo-backend.buildwithangga.id/api';
 
   Future<List<ProductModel>> getProduct() async {
     var url = '$baseUrl/products';

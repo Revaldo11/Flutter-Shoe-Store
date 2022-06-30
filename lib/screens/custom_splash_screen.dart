@@ -52,17 +52,11 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
     });
 
     getInit();
-    // Timer(Duration(seconds: 4), () {
-    //   setState(() {
-    //     Timer(Duration(seconds: 1),
-    //         () => Navigator.pushNamed(context, '/sign-in'));
-    //   });
-    // });
   }
 
   getInit()async{
     await Provider.of<ProductProvider>(context, listen: false).getProducts();
-    Navigator.pushNamed(context, '/sign-in');
+    Navigator.pushNamed(context, '/home');
   }
 
   @override

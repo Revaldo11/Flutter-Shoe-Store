@@ -9,11 +9,12 @@ import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
+  var isLogin;
 
   @override
   Widget build(BuildContext context) {
-    AuthProvider authProvider = Provider.of<AuthProvider>(context);
-    UserModel user = authProvider.user;
+    // AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    // UserModel user = authProvider.user;
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
 
     Widget header() {
@@ -30,14 +31,14 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hallo, ${user.name}',
+                    'Hallo,',
                     style: primaryTextStyle.copyWith(
                       fontSize: 24,
                       fontWeight: semiBold,
                     ),
                   ),
                   Text(
-                    '@${user.username}',
+                    '@',
                     style: subtitleTextStyle.copyWith(
                       fontSize: 16,
                     ),
@@ -52,7 +53,7 @@ class HomePage extends StatelessWidget {
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   image: NetworkImage(
-                    user.profilePhotoUrl,
+                    'user.profilePhotoUrl',
                   ),
                 ),
               ),
