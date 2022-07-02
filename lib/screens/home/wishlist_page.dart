@@ -23,7 +23,7 @@ class WishlistPage extends StatelessWidget {
       return Expanded(
         child: Container(
           width: double.infinity,
-          color: backgroundColor3,
+          color: backgroundColor1,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -64,6 +64,7 @@ class WishlistPage extends StatelessWidget {
                     style: primaryTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: medium,
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -77,7 +78,7 @@ class WishlistPage extends StatelessWidget {
     Widget content() {
       return Expanded(
         child: Container(
-          color: backgroundColor3,
+          color: backgroundColor1,
           child: ListView(
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
             children: wishlistProvider.wishlist

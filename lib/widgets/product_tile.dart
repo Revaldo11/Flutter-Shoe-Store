@@ -20,11 +20,28 @@ class ProductTile extends StatelessWidget {
       },
       child: Container(
         margin: EdgeInsets.only(
-            left: defaultMargin, right: defaultMargin, bottom: defaultMargin),
+          left: defaultMargin,
+          right: defaultMargin,
+          bottom: defaultMargin,
+        ),
+        decoration: BoxDecoration(
+          color: backgroundColor1,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              spreadRadius: 1,
+              blurRadius: 10,
+            ),
+          ],
+        ),
         child: Row(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15),
+                bottomLeft: Radius.circular(15),
+              ),
               child: Image.network(
                 product.galleries == null
                     ? 'https://via.placeholder.com/215x278'

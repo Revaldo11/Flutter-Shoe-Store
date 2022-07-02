@@ -126,11 +126,14 @@ class CartScreen extends StatelessWidget {
                     Text(
                       'Continue to Checkout',
                       style: primaryTextStyle.copyWith(
-                          fontSize: 16, fontWeight: semiBold),
+                        fontSize: 16,
+                        fontWeight: semiBold,
+                        color: Colors.white,
+                      ),
                     ),
                     Icon(
                       Icons.arrow_forward,
-                      color: primaryTextColor,
+                      color: Colors.white,
                     ),
                   ],
                 ),
@@ -153,7 +156,7 @@ class CartScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: header(),
-      backgroundColor: backgroundColor3,
+      backgroundColor: backgroundColor1,
       body: content(),
       bottomNavigationBar: customBottomNav(),
     );

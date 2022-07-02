@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myshoe/models/users_model.dart';
-import 'package:myshoe/providers/auth_povider.dart';
+// import 'package:myshoe/models/users_model.dart';
+// import 'package:myshoe/providers/auth_povider.dart';
 import 'package:myshoe/providers/product_provider.dart';
 import 'package:myshoe/theme.dart';
 import 'package:myshoe/widgets/product_card.dart';
@@ -79,13 +79,14 @@ class HomePage extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                color: primaryColor,
+                color: Color.fromARGB(255, 113, 53, 182),
               ),
               child: Text(
                 'All Shoes',
                 style: primaryTextStyle.copyWith(
                   fontSize: 13,
-                  fontWeight: medium,
+                  fontWeight: bold,
+                  color: Color(0xffffffff),
                 ),
               ),
             ),
@@ -99,16 +100,15 @@ class HomePage extends StatelessWidget {
                 horizontal: 12,
               ),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: transparantColor,
-                  border: Border.all(
-                    color: subtitleColor,
-                  )),
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.white,
+              ),
               child: Text(
                 'Running',
                 style: primaryTextStyle.copyWith(
                   fontSize: 13,
                   fontWeight: medium,
+                  color: Color(0xffBBBBBB),
                 ),
               ),
             ),
@@ -122,62 +122,59 @@ class HomePage extends StatelessWidget {
                 horizontal: 12,
               ),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: transparantColor,
-                  border: Border.all(
-                    color: subtitleColor,
-                  )),
-              child: Text(
-                'Training',
-                style: primaryTextStyle.copyWith(
-                  fontSize: 13,
-                  fontWeight: medium,
-                ),
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.white,
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                top: defaultMargin,
-                left: 16,
-              ),
-              padding: EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 12,
-              ),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: transparantColor,
-                  border: Border.all(
-                    color: subtitleColor,
-                  )),
-              child: Text(
-                'Basketball',
-                style: primaryTextStyle.copyWith(
-                  fontSize: 13,
-                  fontWeight: medium,
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                top: defaultMargin,
-                left: 16,
-              ),
-              padding: EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 12,
-              ),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: transparantColor,
-                  border: Border.all(
-                    color: subtitleColor,
-                  )),
               child: Text(
                 'Hiking',
                 style: primaryTextStyle.copyWith(
                   fontSize: 13,
                   fontWeight: medium,
+                  color: Color(0xffBBBBBB),
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                top: defaultMargin,
+                left: 16,
+              ),
+              padding: EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 12,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.white,
+              ),
+              child: Text(
+                'Sport',
+                style: primaryTextStyle.copyWith(
+                  fontSize: 13,
+                  fontWeight: medium,
+                  color: Color(0xffBBBBBB),
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                top: defaultMargin,
+                left: 16,
+              ),
+              padding: EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 12,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.white,
+              ),
+              child: Text(
+                'vans',
+                style: primaryTextStyle.copyWith(
+                  fontSize: 13,
+                  fontWeight: medium,
+                  color: Color(0xffBBBBBB),
                 ),
               ),
             ),
@@ -205,6 +202,7 @@ class HomePage extends StatelessWidget {
 
     Widget popularProducts() {
       return Container(
+        height: 300,
         margin: EdgeInsets.only(top: 14),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -214,7 +212,11 @@ class HomePage extends StatelessWidget {
                 width: defaultMargin,
               ),
               Row(
-                children: productProvider.products.map((product) => ProductCard(product: product,)).toList(),
+                children: productProvider.products
+                    .map((product) => ProductCard(
+                          product: product,
+                        ))
+                    .toList(),
               ),
             ],
           ),
@@ -243,8 +245,11 @@ class HomePage extends StatelessWidget {
       return Container(
         margin: EdgeInsets.only(top: 14),
         child: Column(
-          children: productProvider.products.map((product) => ProductTile(product: product,)).toList()
-        ),
+            children: productProvider.products
+                .map((product) => ProductTile(
+                      product: product,
+                    ))
+                .toList()),
       );
     }
 

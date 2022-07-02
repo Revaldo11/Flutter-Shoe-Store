@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:myshoe/models/product_model.dart';
-import 'package:myshoe/providers/product_provider.dart';
 import 'package:myshoe/providers/wishlist_provider.dart';
 import 'package:myshoe/theme.dart';
 import 'package:provider/provider.dart';
@@ -11,21 +10,31 @@ class WishlistBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WishlistProvider wishlistProvider=Provider.of<WishlistProvider>(context);
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
     return Container(
       margin: EdgeInsets.only(top: 20),
-      padding: EdgeInsets.only(top: 10, left: 12, bottom: 24, right: 20),
+      padding: EdgeInsets.only(top: 0, left: 0, bottom: 0, right: 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: backgroundColor4,
+        color: backgroundColor1,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 10,
+          ),
+        ],
       ),
       child: Row(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15),
+              bottomLeft: Radius.circular(15),
+            ),
             child: Image.network(
               product.galleries[0].url,
-              width: 60,
+              width: 100,
             ),
           ),
           SizedBox(width: 12),
@@ -46,7 +55,7 @@ class WishlistBubble extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: (){
+            onTap: () {
               wishlistProvider.setProduct(product);
             },
             child: Image.asset(

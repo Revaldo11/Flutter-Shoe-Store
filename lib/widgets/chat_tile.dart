@@ -53,7 +53,7 @@ class ChatTile extends StatelessWidget {
             SizedBox(height: 12),
             Divider(
               thickness: 1,
-              color: Color(0xff2B2939),
+              color: Color.fromARGB(255, 214, 214, 214),
             ),
           ],
         ),

@@ -31,12 +31,19 @@ class _CartCardState extends State<CartCard> {
       margin: EdgeInsets.only(top: defaultMargin),
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
-        color: backgroundColor4,
+        color: Colors.grey.shade200,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 10,
+            color: Colors.grey.shade300,
+            offset: Offset(6, 6),
+            blurRadius: 15,
+            spreadRadius: 5,
+          ),
+          BoxShadow(
+            color: Colors.white,
+            offset: Offset(-6, -6),
+            blurRadius: 15,
             spreadRadius: 5,
           ),
         ],

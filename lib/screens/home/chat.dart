@@ -13,7 +13,7 @@ class ChatPage extends StatelessWidget {
       automaticallyImplyLeading: false,
       title: Text(
         'Message Support',
-        style: primaryTextStyle.copyWith(fontSize: 18, fontWeight: medium),
+        style: primaryTextStyle.copyWith(fontSize: 18, fontWeight: bold),
       ),
     );
   }
@@ -69,7 +69,7 @@ class ChatPage extends StatelessWidget {
     return Expanded(
       child: Container(
         width: double.infinity,
-        color: backgroundColor3,
+        color: backgroundColor1,
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: defaultMargin),
           children: [

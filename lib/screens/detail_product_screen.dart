@@ -9,7 +9,6 @@ class ProductScreen extends StatefulWidget {
   ProductScreen({Key? key, required this.product}) : super(key: key);
   final ProductModel product;
 
-
   @override
   State<ProductScreen> createState() => _ProductScreenState();
 }
@@ -22,12 +21,11 @@ class _ProductScreenState extends State<ProductScreen> {
   ];
 
   int currrentIndex = 0;
-  bool isFavorite=false;
+  bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
-    
-    WishlistProvider wishlistProvider=Provider.of<WishlistProvider>(context);
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
     Future<void> showSuccessDialog() async {
       return showDialog<void>(
         context: context,
@@ -134,7 +132,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 ),
                 Icon(
                   Icons.shopping_bag,
-                  color: backgroundColor1,
+                  color: backgroundColor2,
                 ),
               ],
             ),
@@ -240,7 +238,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     child: Image.asset(
                       wishlistProvider.isWishlist(widget.product)
                           ? 'assets/icon_circle_favorite_red.png'
-                          : 'assets/icon_circle_favorite.png',
+                          : 'assets/icon_circle_favorite2.png',
                       width: 46,
                     ),
                   ),
@@ -257,8 +255,15 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: backgroundColor2,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(4),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 4,
+                    offset: Offset(0, 4),
+                  ),
+                ],
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -342,6 +347,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           'Add to Cart',
                           style: primaryTextStyle.copyWith(
                             fontWeight: semiBold,
+                            color: Colors.white,
                           ),
                         ),
                       ),
