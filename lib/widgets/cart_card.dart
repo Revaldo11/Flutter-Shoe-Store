@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myshoe/models/cart_model.dart';
-import 'package:myshoe/models/product_model.dart';
 import 'package:myshoe/providers/cart_provider.dart';
-import 'package:myshoe/providers/product_provider.dart';
 import 'package:myshoe/theme.dart';
 import 'package:provider/provider.dart';
 

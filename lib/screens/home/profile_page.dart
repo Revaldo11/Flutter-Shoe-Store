@@ -33,8 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     image: NetworkImage(
-                      user.profilePhotoUrl,
-                    ),
+                        'https://github.com/Revaldo11/appStore-client/blob/develop/assets/image_profile.png?raw=true'),
                   ),
                 ),
               ),
@@ -101,7 +100,7 @@ class _ProfilePageState extends State<ProfilePage> {
           padding: EdgeInsets.symmetric(horizontal: defaultMargin),
           width: double.infinity,
           decoration: BoxDecoration(
-            color: backgroundColor3,
+            color: Color(0xfffbfcfc),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

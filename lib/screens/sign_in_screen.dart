@@ -91,28 +91,27 @@ class _SignInScreenState extends State<SignInScreen> {
               height: 50.0,
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               decoration: BoxDecoration(
-                color: backgroundColor2,
+                color: Color(0xfff0f2fa),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
                 child: Row(
                   children: [
-                    Image.asset(
-                      'assets/icon_email.png',
-                      width: 17,
-                    ),
                     SizedBox(
-                      width: 16.0,
+                      width: 5.0,
                     ),
                     Expanded(
-                        child: TextFormField(
-                      controller: emailController,
-                      style: primaryTextStyle,
-                      decoration: InputDecoration.collapsed(
-                        hintText: 'Your email Address',
-                        hintStyle: subtitleTextStyle,
+                      child: TextFormField(
+                        controller: emailController,
+                        style: primaryTextStyle.copyWith(
+                          color: backgroundColor3,
+                        ),
+                        decoration: InputDecoration.collapsed(
+                          hintText: 'Your email Address',
+                          hintStyle: subtitleTextStyle,
+                        ),
                       ),
-                    ))
+                    ),
                   ],
                 ),
               ),
@@ -142,23 +141,21 @@ class _SignInScreenState extends State<SignInScreen> {
               height: 50.0,
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               decoration: BoxDecoration(
-                color: backgroundColor2,
+                color: Color(0xfff0f2fa),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
                 child: Row(
                   children: [
-                    Image.asset(
-                      'assets/icon_password.png',
-                      width: 17,
-                    ),
                     SizedBox(
-                      width: 16.0,
+                      width: 10.0,
                     ),
                     Expanded(
                       child: TextFormField(
                         controller: passwordController,
-                        style: primaryTextStyle,
+                        style: primaryTextStyle.copyWith(
+                          color: backgroundColor3,
+                        ),
                         obscureText: true,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Your Password',
@@ -192,6 +189,7 @@ class _SignInScreenState extends State<SignInScreen> {
             style: primaryTextStyle.copyWith(
               fontSize: 16,
               fontWeight: medium,
+              color: Colors.white,
             ),
           ),
         ),

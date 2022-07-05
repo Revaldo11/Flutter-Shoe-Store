@@ -54,9 +54,9 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
     getInit();
   }
 
-  getInit()async{
+  getInit() async {
     await Provider.of<ProductProvider>(context, listen: false).getProducts();
-    Navigator.pushNamed(context, '/home');
+    Navigator.pushNamed(context, '/sign-in');
   }
 
   @override

@@ -25,7 +25,7 @@ class LoadingButton extends StatelessWidget {
               margin: EdgeInsets.only(right: 10.0),
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation(
-                  primaryTextColor,
+                  whiteColor,
                 ),
                 strokeWidth: 2,
               ),
@@ -37,6 +37,7 @@ class LoadingButton extends StatelessWidget {
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: medium,
+                color: Colors.white,
               ),
             ),
           ],

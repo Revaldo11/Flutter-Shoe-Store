@@ -25,6 +25,8 @@ class EditProfileScreen extends StatelessWidget {
         title: Text(
           'Edit Profile',
         ),
+        iconTheme: IconThemeData(color: primaryColor),
+        titleTextStyle: TextStyle(color: backgroundColor3),
         actions: [
           IconButton(
             icon: Icon(
@@ -145,8 +147,7 @@ class EditProfileScreen extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.fill,
                   image: NetworkImage(
-                    user.profilePhotoUrl,
-                  ),
+                      'https://github.com/Revaldo11/appStore-client/blob/develop/assets/image_profile.png?raw=true'),
                 ),
               ),
             ),
@@ -163,7 +164,7 @@ class EditProfileScreen extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Scaffold(
-          backgroundColor: backgroundColor3,
+          backgroundColor: Color(0xfffbfcfc),
           appBar: header(),
           body: content(),
         ),

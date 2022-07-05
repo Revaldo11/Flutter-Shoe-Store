@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:myshoe/models/users_model.dart';
-// import 'package:myshoe/providers/auth_povider.dart';
+import 'package:myshoe/models/users_model.dart';
+import 'package:myshoe/providers/auth_povider.dart';
 import 'package:myshoe/providers/product_provider.dart';
 import 'package:myshoe/theme.dart';
 import 'package:myshoe/widgets/product_card.dart';
@@ -9,12 +9,11 @@ import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
-  var isLogin;
 
   @override
   Widget build(BuildContext context) {
-    // AuthProvider authProvider = Provider.of<AuthProvider>(context);
-    // UserModel user = authProvider.user;
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
 
     Widget header() {
@@ -31,14 +30,14 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hallo,',
+                    'Hallo, ${user.name}',
                     style: primaryTextStyle.copyWith(
                       fontSize: 24,
                       fontWeight: semiBold,
                     ),
                   ),
                   Text(
-                    '@',
+                    '@${user.username}',
                     style: subtitleTextStyle.copyWith(
                       fontSize: 16,
                     ),
@@ -53,8 +52,9 @@ class HomePage extends StatelessWidget {
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   image: NetworkImage(
-                    'user.profilePhotoUrl',
+                    'https://github.com/Revaldo11/appStore-client/blob/develop/assets/image_profile.png?raw=true',
                   ),
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
