@@ -62,6 +62,7 @@ class CheckoutSuccess extends StatelessWidget {
                   'Order Other Shoes',
                   style: primaryTextStyle.copyWith(
                     fontSize: 16,
+                    color: Colors.white,
                     fontWeight: medium,
                   ),
                 ),
@@ -74,7 +75,7 @@ class CheckoutSuccess extends StatelessWidget {
               child: TextButton(
                 onPressed: () {},
                 style: TextButton.styleFrom(
-                  backgroundColor: Color(0xff39374B),
+                  backgroundColor: Color.fromARGB(255, 180, 181, 181),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -94,7 +95,7 @@ class CheckoutSuccess extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: backgroundColor3,
+      backgroundColor: Color(0xfffbfcfc),
       appBar: header(),
       body: content(),
     );

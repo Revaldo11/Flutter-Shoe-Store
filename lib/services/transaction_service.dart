@@ -5,7 +5,8 @@ import 'package:http/http.dart' as http;
 import '../models/cart_model.dart';
 
 class TransactionService {
-  var baseUrl = 'https://myshoe-api.revaldoputra.my.id/api';
+  // var baseUrl = 'https://myshoe-api.revaldoputra.my.id/api';
+  var baseUrl = 'https://shamo-backend.buildwithangga.id/api';
 
   Future<bool> checkout(
       String token, List<CartModel> cart, double totalPrice) async {
@@ -41,7 +42,7 @@ class TransactionService {
     if (response.statusCode == 200) {
       return true;
     } else {
-      throw Exception('Transaksi Checkout');
+      throw Exception('Transaksi Checkout gagal');
     }
   }
 }

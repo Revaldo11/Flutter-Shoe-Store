@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myshoe/providers/auth_povider.dart';
 import 'package:myshoe/providers/cart_provider.dart';
 import 'package:myshoe/providers/product_provider.dart';
+import 'package:myshoe/providers/transaction_provider.dart';
 import 'package:myshoe/providers/wishlist_provider.dart';
 import 'package:myshoe/screens/cart_screen.dart';
 import 'package:myshoe/screens/checkout_screen.dart';
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => TransactionProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -47,7 +51,7 @@ class MyApp extends StatelessWidget {
           '/edit-profile': (context) => EditProfileScreen(),
           '/cart': (context) => CartScreen(),
           '/checkout': (context) => CheckoutScreen(),
-          '/checkout_success': (context) => CheckoutSuccess(),
+          '/checkout-success': (context) => CheckoutSuccess(),
         },
       ),
     );

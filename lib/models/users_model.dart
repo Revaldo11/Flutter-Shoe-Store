@@ -8,9 +8,9 @@ class UserModel {
 
   UserModel({
     required this.id,
-    this.name,
-    this.email,
-    this.username,
+    required this.name,
+    required this.email,
+    required this.username,
     required this.profilePhotoUrl,
     this.token,
   });

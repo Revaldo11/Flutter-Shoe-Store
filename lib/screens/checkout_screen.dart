@@ -1,17 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:myshoe/providers/auth_povider.dart';
 import 'package:myshoe/providers/cart_provider.dart';
+import 'package:myshoe/providers/transaction_provider.dart';
 import 'package:myshoe/theme.dart';
+import 'package:myshoe/widgets/loading_button.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/checkout_card.dart';
 
-class CheckoutScreen extends StatelessWidget {
-  const CheckoutScreen({Key? key}) : super(key: key);
+class CheckoutScreen extends StatefulWidget {
+  CheckoutScreen({Key? key}) : super(key: key);
 
+  @override
+  State<CheckoutScreen> createState() => _CheckoutScreenState();
+}
+
+class _CheckoutScreenState extends State<CheckoutScreen> {
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+    TransactionProvider transactionProvider =
+        Provider.of<TransactionProvider>(context);
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleCheckout() async {
+      setState(() {
+        isLoading = true;
+      });
+
+      if (await transactionProvider.checkout(
+        authProvider.user.token,
+        cartProvider.cart,
+        cartProvider.totalPrice(),
+      )) {
+        cartProvider.cart = [];
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/checkout-success', (route) => false);
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+    }
+
     PreferredSizeWidget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
@@ -241,31 +273,33 @@ class CheckoutScreen extends StatelessWidget {
             color: Colors.grey,
             thickness: 0.2,
           ),
-          Container(
-            height: 50,
-            width: double.infinity,
-            margin: EdgeInsets.symmetric(vertical: defaultMargin),
-            child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: primaryColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+          isLoading
+              ? Container(
+                  margin: EdgeInsets.only(bottom: 30),
+                  child: LoadingButton(),
+                )
+              : Container(
+                  height: 50,
+                  width: double.infinity,
+                  margin: EdgeInsets.symmetric(vertical: defaultMargin),
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    onPressed: handleCheckout,
+                    child: Text(
+                      'Checkout Now',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: semiBold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, '/checkout_success', (route) => false);
-              },
-              child: Text(
-                'Checkout Now',
-                style: primaryTextStyle.copyWith(
-                  fontSize: 16,
-                  fontWeight: semiBold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
         ],
       );
     }

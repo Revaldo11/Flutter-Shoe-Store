@@ -1,10 +1,9 @@
-import 'package:flutter/foundation.dart';
-
+import 'package:flutter/material.dart';
 import '../models/cart_model.dart';
 
 class TransactionProvider with ChangeNotifier {
   Future<bool> checkout(
-      String token, List<CartModel> cart, double totalPrice) async {
+      String? token, List<CartModel> cart, double totalPrice) async {
     try {
       if (await TransactionProvider().checkout(token, cart, totalPrice)) {
         return true;
