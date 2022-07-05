@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myshoe/providers/auth_povider.dart';
+import 'package:myshoe/providers/cart_provider.dart';
 import 'package:myshoe/providers/product_provider.dart';
 import 'package:myshoe/providers/wishlist_provider.dart';
 import 'package:myshoe/screens/cart_screen.dart';
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => WishlistProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
         ),
       ],
       child: MaterialApp(

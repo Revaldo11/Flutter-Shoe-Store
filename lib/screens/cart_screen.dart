@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/providers/cart_provider.dart';
+import 'package:provider/provider.dart';
 import '../theme.dart';
 import '../widgets/cart_card.dart';
 
@@ -7,6 +9,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
     PreferredSizeWidget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
@@ -42,30 +45,24 @@ class CartScreen extends StatelessWidget {
               style: secondaryTextStyle,
             ),
             SizedBox(height: 20),
-            Container(
-              color: transparantColor,
-              height: 44,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, '/home', (route) => false);
-                },
-                child: TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 24),
-                    backgroundColor: primaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: Text(
-                    'Goo Shopping',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: medium,
-                    ),
-                  ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/home', (route) => false);
+              },
+              style: TextButton.styleFrom(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+                backgroundColor: primaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: Text(
+                'Go Shopping',
+                style: primaryTextStyle.copyWith(
+                  fontSize: 16,
+                  fontWeight: medium,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -91,9 +88,9 @@ class CartScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '\$287,96',
+                    '\$${cartProvider.totalPrice()}',
                     style: priceTextStyle.copyWith(
-                        fontWeight: semiBold, fontSize: 16),
+                        fontWeight: semiBold, fontSize: 10),
                   ),
                 ],
               ),
@@ -147,18 +144,20 @@ class CartScreen extends StatelessWidget {
     Widget content() {
       return ListView(
         padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-        children: [
-          CartCard(),
-          CartCard(),
-        ],
+        children: cartProvider.cart
+            .map((product) => CartCard(
+                  cart: product,
+                ))
+            .toList(),
       );
     }
 
     return Scaffold(
       appBar: header(),
       backgroundColor: backgroundColor1,
-      body: content(),
-      bottomNavigationBar: customBottomNav(),
+      body: cartProvider.cart.isEmpty ? emptyCart() : content(),
+      bottomNavigationBar:
+          cartProvider.cart.isEmpty ? SizedBox() : customBottomNav(),
     );
   }
 }

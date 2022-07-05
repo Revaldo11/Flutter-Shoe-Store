@@ -1,32 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/models/cart_model.dart';
+import 'package:myshoe/models/product_model.dart';
+import 'package:myshoe/providers/cart_provider.dart';
+import 'package:myshoe/providers/product_provider.dart';
 import 'package:myshoe/theme.dart';
+import 'package:provider/provider.dart';
 
 class CartCard extends StatefulWidget {
-  CartCard({Key? key}) : super(key: key);
-
+  CartCard({Key? key, required this.cart}) : super(key: key);
+  final CartModel cart;
   @override
   State<CartCard> createState() => _CartCardState();
 }
 
 class _CartCardState extends State<CartCard> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _decrementCounter() {
-    setState(() {
-      if (_counter > 0) {
-        _counter--;
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
     return Container(
       margin: EdgeInsets.only(top: defaultMargin),
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -55,8 +45,8 @@ class _CartCardState extends State<CartCard> {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  'assets/image_shoe.png',
+                child: Image.network(
+                  widget.cart.product.galleries[0].url,
                   width: 60,
                 ),
               ),
@@ -66,14 +56,14 @@ class _CartCardState extends State<CartCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Terrex Urban Low',
+                      widget.cart.product.name,
                       style: primaryTextStyle.copyWith(
                         fontWeight: semiBold,
                       ),
                     ),
                     SizedBox(height: 4),
                     Text(
-                      '\$143,98',
+                      '\$${widget.cart.product.price}',
                       style: priceTextStyle,
                     ),
                   ],
@@ -83,7 +73,7 @@ class _CartCardState extends State<CartCard> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      _incrementCounter();
+                      cartProvider.addQuantity(widget.cart.id);
                     },
                     child: Image.asset(
                       'assets/icon_add.png',
@@ -92,13 +82,13 @@ class _CartCardState extends State<CartCard> {
                   ),
                   SizedBox(height: 4),
                   Text(
-                    '$_counter',
+                    widget.cart.quantity.toString(),
                     style: primaryTextStyle.copyWith(fontWeight: medium),
                   ),
                   SizedBox(height: 4),
                   GestureDetector(
                     onTap: () {
-                      _decrementCounter();
+                      cartProvider.reduceQuantity(widget.cart.id);
                     },
                     child: Image.asset('assets/icon_remove.png', width: 16),
                   ),
@@ -124,15 +114,20 @@ class _CartCardState extends State<CartCard> {
             ],
           ),
           SizedBox(height: 12),
-          Row(
-            children: [
-              Image.asset('assets/icon_trash.png', width: 10),
-              SizedBox(width: 4),
-              Text(
-                'Remove',
-                style: alertTextStyle.copyWith(fontSize: 12),
-              ),
-            ],
+          GestureDetector(
+            onTap: () {
+              cartProvider.removeCart(widget.cart.id);
+            },
+            child: Row(
+              children: [
+                Image.asset('assets/icon_trash.png', width: 10),
+                SizedBox(width: 4),
+                Text(
+                  'Remove',
+                  style: alertTextStyle.copyWith(fontSize: 12),
+                ),
+              ],
+            ),
           ),
         ],
       ),

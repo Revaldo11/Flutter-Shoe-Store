@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:myshoe/models/product_model.dart';
+import 'package:myshoe/providers/cart_provider.dart';
 import 'package:myshoe/providers/wishlist_provider.dart';
 import 'package:myshoe/theme.dart';
 import 'package:provider/provider.dart';
@@ -26,13 +27,14 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
     Future<void> showSuccessDialog() async {
       return showDialog<void>(
         context: context,
         builder: (BuildContext contex) => Container(
           width: MediaQuery.of(context).size.width - (2 * defaultMargin),
           child: AlertDialog(
-            backgroundColor: backgroundColor3,
+            backgroundColor: backgroundColor1,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
@@ -90,6 +92,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           style: primaryTextStyle.copyWith(
                             fontWeight: medium,
                             fontSize: 16,
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -335,6 +338,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       height: 54,
                       child: TextButton(
                         onPressed: () {
+                          cartProvider.addCart(widget.product);
                           showSuccessDialog();
                         },
                         style: TextButton.styleFrom(
