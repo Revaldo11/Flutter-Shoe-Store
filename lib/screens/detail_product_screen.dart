@@ -321,7 +321,9 @@ class _ProductScreenState extends State<ProductScreen> {
               child: Row(
                 children: [
                   GestureDetector(
-                    onTap: () => {Navigator.pushNamed(context, '/detail-chat')},
+                    onTap: () => {
+                      Navigator.pushNamed(context, '/detail-chat'),
+                    },
                     child: Container(
                       width: 54,
                       height: 54,

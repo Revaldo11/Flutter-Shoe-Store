@@ -28,7 +28,7 @@ class ChatBubble extends StatelessWidget {
             bottomRight: Radius.circular(12),
             bottomLeft: Radius.circular(12),
           ),
-          color: isSender ? backgroundColor5 : backgroundColor4,
+          color: isSender ? primaryColor : backgroundColor4,
         ),
         child: Column(
           children: [
@@ -48,12 +48,12 @@ class ChatBubble extends StatelessWidget {
                     children: [
                       Text(
                         'COURT VISION 2.0 SHOES',
-                        style: primaryTextStyle,
+                        style: primaryTextStyle.copyWith(color: Colors.white),
                       ),
                       SizedBox(height: 4),
                       Text(
                         '\$57,15',
-                        style: priceTextStyle,
+                        style: priceTextStyle.copyWith(color: Colors.black),
                       )
                     ],
                   ),
@@ -66,14 +66,19 @@ class ChatBubble extends StatelessWidget {
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(
-                      color: priceColor,
+                      color: Color.fromARGB(255, 82, 72, 156),
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   onPressed: () {},
-                  child: Text('ADD TO CART', style: purpelTextStyle),
+                  child: Text(
+                    'ADD TO CART',
+                    style: purpelTextStyle.copyWith(
+                      color: Color.fromARGB(255, 70, 61, 135),
+                    ),
+                  ),
                 ),
                 SizedBox(width: 8),
                 TextButton(
@@ -87,7 +92,7 @@ class ChatBubble extends StatelessWidget {
                   child: Text(
                     'Buy Now',
                     style: GoogleFonts.poppins(
-                      color: backgroundColor5,
+                      color: Colors.white,
                       fontWeight: medium,
                     ),
                   ),
@@ -124,11 +129,13 @@ class ChatBubble extends StatelessWidget {
                       bottomRight: Radius.circular(12),
                       bottomLeft: Radius.circular(12),
                     ),
-                    color: isSender ? backgroundColor5 : backgroundColor4,
+                    color: isSender ? primaryColor : whiteColor,
                   ),
                   child: Text(
                     text,
-                    style: primaryTextStyle,
+                    style: isSender
+                        ? primaryTextStyle.copyWith(color: Colors.white)
+                        : primaryTextStyle,
                   ),
                 ),
               ),

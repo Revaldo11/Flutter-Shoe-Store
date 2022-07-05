@@ -51,10 +51,10 @@ class DetailChatPage extends StatelessWidget {
         margin: EdgeInsets.only(bottom: 20),
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: backgroundColor5,
+          color: primaryColor,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: priceColor,
+            color: Color.fromARGB(255, 82, 72, 156),
           ),
         ),
         child: Row(
@@ -76,12 +76,14 @@ class DetailChatPage extends StatelessWidget {
                   Text(
                     'COURT VISIO...',
                     overflow: TextOverflow.ellipsis,
-                    style: primaryTextStyle,
+                    style: primaryTextStyle.copyWith(
+                      color: Colors.white,
+                    ),
                   ),
                   SizedBox(height: 2),
                   Text(
                     '\$57,15',
-                    style: priceTextStyle,
+                    style: priceTextStyle.copyWith(color: Colors.black),
                   ),
                 ],
               ),
@@ -141,7 +143,7 @@ class DetailChatPage extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      color: backgroundColor4,
+                      color: whiteColor,
                     ),
                     child: Center(
                       child: TextFormField(
@@ -163,7 +165,7 @@ class DetailChatPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: backgroundColor3,
+      backgroundColor: Color(0xfffbfcfc),
       appBar: header(),
       body: SingleChildScrollView(
         child: Container(
