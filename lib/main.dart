@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:myshoe/providers/auth_povider.dart';
 import 'package:myshoe/providers/cart_provider.dart';
@@ -15,7 +16,11 @@ import 'package:myshoe/screens/sign_in_screen.dart';
 import 'package:myshoe/screens/custom_splash_screen.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

@@ -9,7 +9,7 @@ class TransactionService {
   var baseUrl = 'https://shamo-backend.buildwithangga.id/api';
 
   Future<bool> checkout(
-      String token, List<CartModel> cart, double totalPrice) async {
+      String token, List<CartModel> carts, double totalPrice) async {
     var url = '$baseUrl/checkout';
     var headers = {
       'Content-Type': 'application/json',
@@ -18,8 +18,8 @@ class TransactionService {
 
     var body = jsonEncode(
       {
-        'address': 'Surabaya',
-        'items': cart
+        'address': 'Marsemoon',
+        'items': carts
             .map((cart) => {
                   'id': cart.product.id,
                   'quantity': cart.quantity,
@@ -42,7 +42,7 @@ class TransactionService {
     if (response.statusCode == 200) {
       return true;
     } else {
-      throw Exception('Transaksi Checkout gagal');
+      throw Exception('Gagal Checkout');
     }
   }
 }

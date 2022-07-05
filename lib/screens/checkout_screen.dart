@@ -5,7 +5,6 @@ import 'package:myshoe/providers/transaction_provider.dart';
 import 'package:myshoe/theme.dart';
 import 'package:myshoe/widgets/loading_button.dart';
 import 'package:provider/provider.dart';
-
 import '../widgets/checkout_card.dart';
 
 class CheckoutScreen extends StatefulWidget {
@@ -76,8 +75,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 ),
                 SizedBox(height: 12),
                 ...cartProvider.cart
-                    .map((cart) => CheckoutCard(
-                          cart: cart,
+                    .map((carts) => CheckoutCard(
+                          cart: carts,
                         ))
                     .toList(),
               ],
