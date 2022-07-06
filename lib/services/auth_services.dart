@@ -2,6 +2,7 @@
   File to request from backend
 */
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import '../models/users_model.dart';
 
@@ -60,7 +61,7 @@ class AuthService {
       body: body,
     );
 
-    print(response.body);
+    debugPrint(response.body);
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body)['data'];

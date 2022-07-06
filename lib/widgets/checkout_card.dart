@@ -3,7 +3,7 @@ import 'package:myshoe/models/cart_model.dart';
 import 'package:myshoe/theme.dart';
 
 class CheckoutCard extends StatelessWidget {
-  const CheckoutCard({Key? key, required this.cart}) : super(key: key);
+  CheckoutCard({Key? key, required this.cart}) : super(key: key);
   final CartModel cart;
 
   @override

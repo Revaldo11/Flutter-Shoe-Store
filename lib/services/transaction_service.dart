@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/cart_model.dart';
@@ -10,7 +11,7 @@ class TransactionService {
 
   Future<bool> checkout(
       String token, List<CartModel> carts, double totalPrice) async {
-    var url = '$baseUrl/checkout';
+    var url = Uri.parse('$baseUrl/checkout');
     var headers = {
       'Content-Type': 'application/json',
       'Authorization': token,
@@ -32,17 +33,17 @@ class TransactionService {
     );
 
     var response = await http.post(
-      Uri.parse(url),
+      url,
       headers: headers,
       body: body,
     );
 
-    print(response.body);
+    debugPrint(response.body);
 
     if (response.statusCode == 200) {
       return true;
     } else {
-      throw Exception('Gagal Checkout');
+      throw Exception('Gagal Melakukan Checkout!');
     }
   }
 }

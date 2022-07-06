@@ -29,7 +29,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       });
 
       if (await transactionProvider.checkout(
-        authProvider.user.token,
+        authProvider.user.token.toString(),
         cartProvider.cart,
         cartProvider.totalPrice(),
       )) {
@@ -42,6 +42,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         isLoading = false;
       });
     }
+
+    // print(handleCheckout());
 
     PreferredSizeWidget header() {
       return AppBar(
@@ -75,9 +77,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 ),
                 SizedBox(height: 12),
                 ...cartProvider.cart
-                    .map((carts) => CheckoutCard(
-                          cart: carts,
-                        ))
+                    .map(
+                      (cart) => CheckoutCard(cart: cart),
+                    )
                     .toList(),
               ],
             ),
