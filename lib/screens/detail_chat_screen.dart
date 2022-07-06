@@ -1,13 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:myshoe/models/product_model.dart';
+import 'package:myshoe/providers/auth_povider.dart';
+import 'package:myshoe/services/message_service.dart';
 import 'package:myshoe/theme.dart';
 import 'package:myshoe/widgets/chat_bubble.dart';
+import 'package:provider/provider.dart';
 
-class DetailChatPage extends StatelessWidget {
+class DetailChatPage extends StatefulWidget {
   DetailChatPage({Key? key, required this.product}) : super(key: key);
-  final ProductModel product;
+  ProductModel product;
+
+  @override
+  State<DetailChatPage> createState() => _DetailChatPageState();
+}
+
+class _DetailChatPageState extends State<DetailChatPage> {
+  TextEditingController messageController = TextEditingController(text: '');
+
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    hendleAddMessage() async {
+      await MessageService().addMessage(
+          user: authProvider.user,
+          isFromUser: true,
+          message: messageController.text,
+          product: widget.product);
+
+      setState(() {
+        widget.product = UnitializedProductModel();
+        messageController.text = '';
+      });
+    }
+
     PreferredSize header() {
       return PreferredSize(
         child: AppBar(
@@ -65,7 +90,7 @@ class DetailChatPage extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.network(
-                product.galleries[0].url,
+                widget.product.galleries[0].url,
                 width: 54,
               ),
             ),
@@ -76,7 +101,7 @@ class DetailChatPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    product.name,
+                    widget.product.name,
                     overflow: TextOverflow.ellipsis,
                     style: primaryTextStyle.copyWith(
                       color: Colors.white,
@@ -84,15 +109,22 @@ class DetailChatPage extends StatelessWidget {
                   ),
                   SizedBox(height: 2),
                   Text(
-                    '\$${product.price}',
+                    '\$${widget.product.price}',
                     style: priceTextStyle.copyWith(color: Colors.black),
                   ),
                 ],
               ),
             ),
-            Image.asset(
-              'assets/button_close.png',
-              width: 22,
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  widget.product = UnitializedProductModel();
+                });
+              },
+              child: Image.asset(
+                'assets/button_close.png',
+                width: 22,
+              ),
             ),
           ],
         ),
@@ -136,7 +168,9 @@ class DetailChatPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            product is UnitializedProductModel ? SizedBox() : productPreview(),
+            widget.product is UnitializedProductModel
+                ? SizedBox()
+                : productPreview(),
             Row(
               children: [
                 Expanded(
@@ -149,6 +183,7 @@ class DetailChatPage extends StatelessWidget {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: messageController,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Typle Message...',
                           hintStyle: subtitleTextStyle,
@@ -158,7 +193,10 @@ class DetailChatPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 20),
-                Image.asset('assets/button_send.png', width: 45),
+                GestureDetector(
+                  onTap: hendleAddMessage,
+                  child: Image.asset('assets/button_send.png', width: 45),
+                ),
               ],
             ),
           ],

@@ -175,7 +175,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
     Widget content() {
       return Container(
-        margin: EdgeInsets.only(top: 17),
+        margin: EdgeInsets.only(top: 50),
         width: double.infinity,
         decoration: BoxDecoration(
           color: backgroundColor1,
@@ -318,7 +318,12 @@ class _ProductScreenState extends State<ProductScreen> {
             //NOTE : BUTTON
             Container(
               width: double.infinity,
-              margin: EdgeInsets.all(defaultMargin),
+              margin: EdgeInsets.only(
+                top: defaultMargin,
+                left: defaultMargin,
+                right: defaultMargin,
+                bottom: 60,
+              ),
               child: Row(
                 children: [
                   GestureDetector(
