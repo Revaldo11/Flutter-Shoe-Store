@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/models/product_model.dart';
 import 'package:myshoe/theme.dart';
 import 'package:myshoe/widgets/chat_bubble.dart';
 
 class DetailChatPage extends StatelessWidget {
-  const DetailChatPage({Key? key}) : super(key: key);
+  DetailChatPage({Key? key, required this.product}) : super(key: key);
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
     PreferredSize header() {
@@ -62,8 +64,8 @@ class DetailChatPage extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                'assets/image_shoe.png',
+              child: Image.network(
+                product.galleries[0].url,
                 width: 54,
               ),
             ),
@@ -74,7 +76,7 @@ class DetailChatPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'COURT VISIO...',
+                    product.name,
                     overflow: TextOverflow.ellipsis,
                     style: primaryTextStyle.copyWith(
                       color: Colors.white,
@@ -82,7 +84,7 @@ class DetailChatPage extends StatelessWidget {
                   ),
                   SizedBox(height: 2),
                   Text(
-                    '\$57,15',
+                    '\$${product.price}',
                     style: priceTextStyle.copyWith(color: Colors.black),
                   ),
                 ],
@@ -134,7 +136,7 @@ class DetailChatPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            productPreview(),
+            product is UnitializedProductModel ? SizedBox() : productPreview(),
             Row(
               children: [
                 Expanded(

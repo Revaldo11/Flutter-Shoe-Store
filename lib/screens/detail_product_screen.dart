@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:myshoe/models/product_model.dart';
 import 'package:myshoe/providers/cart_provider.dart';
 import 'package:myshoe/providers/wishlist_provider.dart';
+import 'package:myshoe/screens/detail_chat_screen.dart';
 import 'package:myshoe/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -322,7 +323,13 @@ class _ProductScreenState extends State<ProductScreen> {
                 children: [
                   GestureDetector(
                     onTap: () => {
-                      Navigator.pushNamed(context, '/detail-chat'),
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailChatPage(
+                              product: widget.product,
+                            ),
+                          ))
                     },
                     child: Container(
                       width: 54,

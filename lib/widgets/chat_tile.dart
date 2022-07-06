@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/models/gallery_model.dart';
+import 'package:myshoe/models/product_model.dart';
+import 'package:myshoe/screens/detail_chat_screen.dart';
 import 'package:myshoe/theme.dart';
 
 class ChatTile extends StatelessWidget {
-  const ChatTile({Key? key}) : super(key: key);
+  const ChatTile({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed('/detail-chat');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailChatPage(
+              product: UnitializedProductModel(),
+            ),
+          ),
+        );
       },
       child: Container(
         margin: EdgeInsets.only(top: 33),
