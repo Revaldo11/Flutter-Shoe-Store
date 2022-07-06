@@ -15,7 +15,6 @@ class HomePage extends StatelessWidget {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
-    print(authProvider.user.token);
 
     Widget header() {
       return Container(

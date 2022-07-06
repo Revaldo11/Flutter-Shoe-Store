@@ -31,7 +31,7 @@ class AuthService {
       body: body,
     );
 
-    print(response.body);
+    debugPrint(response.body.toString());
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body)['data'];

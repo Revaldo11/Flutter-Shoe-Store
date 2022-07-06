@@ -8,7 +8,6 @@ import 'package:myshoe/providers/wishlist_provider.dart';
 import 'package:myshoe/screens/cart_screen.dart';
 import 'package:myshoe/screens/checkout_screen.dart';
 import 'package:myshoe/screens/checkout_success.dart';
-import 'package:myshoe/screens/detail_chat_screen.dart';
 import 'package:myshoe/screens/edit_profile_screen.dart';
 import 'package:myshoe/screens/home/main_page.dart';
 import 'package:myshoe/screens/sign_up_screen.dart';

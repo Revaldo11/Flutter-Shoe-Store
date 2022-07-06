@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:myshoe/models/gallery_model.dart';
 import 'package:myshoe/models/product_model.dart';
 import 'package:myshoe/screens/detail_chat_screen.dart';
 import 'package:myshoe/theme.dart';
