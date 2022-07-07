@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/models/message_model.dart';
 import 'package:myshoe/models/product_model.dart';
 import 'package:myshoe/providers/auth_povider.dart';
 import 'package:myshoe/services/message_service.dart';
@@ -28,7 +29,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
           product: widget.product);
 
       setState(() {
-        widget.product = UnitializedProductModel();
+        widget.product = UninitializedProductModel();
         messageController.text = '';
       });
     }
@@ -119,7 +120,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  widget.product = UnitializedProductModel();
+                  widget.product = UninitializedProductModel();
                 });
               },
               child: Image.asset(
@@ -133,33 +134,29 @@ class _DetailChatPageState extends State<DetailChatPage> {
     }
 
     Widget content() {
-      return Expanded(
-        child: ListView(
-          padding: EdgeInsets.symmetric(
-            horizontal: defaultMargin,
-          ),
-          children: [
-            ChatBubble(
-              text: 'Hi, This item is still available?',
-              isSender: true,
-              hasProduct: true,
-            ),
-            ChatBubble(
-              text: 'Good night, This item is only available in size 42 and 43',
-              isSender: false,
-            ),
-            ChatBubble(
-              text: 'Hi, This item is still available?',
-              isSender: true,
-              hasProduct: true,
-            ),
-            ChatBubble(
-              text: 'Good night, This item is only available in size 42 and 43',
-              isSender: false,
-            ),
-          ],
-        ),
-      );
+      return StreamBuilder<List<MessageModel>>(
+          stream:
+              MessageService().getMessageByUserId(userId: authProvider.user.id),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView(
+                padding: EdgeInsets.symmetric(
+                  horizontal: defaultMargin,
+                ),
+                children: snapshot.data!
+                    .map((MessageModel message) => ChatBubble(
+                          text: message.message,
+                          product: message.product,
+                          isSender: message.isFromUser,
+                        ))
+                    .toList(),
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          });
     }
 
     Widget chatInput() {
@@ -169,7 +166,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            widget.product is UnitializedProductModel
+            widget.product is UninitializedProductModel
                 ? SizedBox()
                 : productPreview(),
             Row(
@@ -208,23 +205,8 @@ class _DetailChatPageState extends State<DetailChatPage> {
     return Scaffold(
       backgroundColor: Color(0xfffbfcfc),
       appBar: header(),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.only(
-            top: defaultMargin,
-          ),
-          // height: MediaQuery.of(context).size.height,
-          height: MediaQuery.of(context).size.height -
-              header().preferredSize.height -
-              defaultMargin,
-          child: Column(
-            children: [
-              content(),
-              chatInput(),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: chatInput(),
+      body: content(),
     );
   }
 }

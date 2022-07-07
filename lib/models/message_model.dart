@@ -7,8 +7,8 @@ class MessageModel {
   late String userImage;
   late bool isFromUser;
   late ProductModel product;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  late DateTime createdAt;
+  late DateTime updatedAt;
 
   MessageModel({
     required this.message,
@@ -17,8 +17,8 @@ class MessageModel {
     required this.userImage,
     required this.isFromUser,
     required this.product,
-    this.createdAt,
-    this.updatedAt,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   MessageModel.fromJson(Map<String, dynamic> json) {
@@ -30,7 +30,7 @@ class MessageModel {
 
     //cek apakah product null atau uninitialized
     product = json['product'].isEmpty
-        ? UnitializedProductModel()
+        ? UninitializedProductModel()
         : ProductModel.fromJson(json['product']);
     createdAt = DateTime.parse(json['created_at']);
     updatedAt = DateTime.parse(json['updated_at']);
@@ -48,7 +48,7 @@ class MessageModel {
       cek apakah product uninitialized kalau iya maka return null, 
       kalau tidak maka return product.toJson()
       */
-      'product': product is UnitializedProductModel ? null : product.toJson(),
+      'product': product is UninitializedProductModel ? {} : product.toJson(),
       'created_at': createdAt.toString(),
       'updated_at': updatedAt.toString(),
     };

@@ -53,9 +53,9 @@ class ProductModel {
   }
 }
 
-class UnitializedProductModel extends ProductModel {
-  // UnitializedProductModel null constructor
-  UnitializedProductModel({
+class UninitializedProductModel extends ProductModel {
+  // UninitializedProductModel null constructor
+  UninitializedProductModel({
     int? id,
     String? name,
     double? price,
