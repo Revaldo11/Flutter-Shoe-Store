@@ -38,6 +38,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
         child: AppBar(
           backgroundColor: backgroundColor1,
           centerTitle: false,
+          iconTheme: IconThemeData(color: backgroundColor3),
           title: Row(
             children: [
               Image.asset(

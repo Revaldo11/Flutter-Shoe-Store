@@ -88,31 +88,22 @@ class _SignInScreenState extends State<SignInScreen> {
               height: 12.0,
             ),
             Container(
-              height: 50.0,
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              decoration: BoxDecoration(
-                color: Color(0xfff0f2fa),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 5.0,
-                    ),
-                    Expanded(
-                      child: TextFormField(
-                        controller: emailController,
-                        style: primaryTextStyle.copyWith(
-                          color: backgroundColor3,
-                        ),
-                        decoration: InputDecoration.collapsed(
-                          hintText: 'Your email Address',
-                          hintStyle: subtitleTextStyle,
-                        ),
-                      ),
-                    ),
-                  ],
+              height: 55,
+              child: TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  hintText: 'Email',
+                  fillColor: Colors.grey[200],
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.deepPurple, width: 1.5),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
               ),
             ),
@@ -138,32 +129,22 @@ class _SignInScreenState extends State<SignInScreen> {
               height: 12.0,
             ),
             Container(
-              height: 50.0,
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              decoration: BoxDecoration(
-                color: Color(0xfff0f2fa),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 10.0,
-                    ),
-                    Expanded(
-                      child: TextFormField(
-                        controller: passwordController,
-                        style: primaryTextStyle.copyWith(
-                          color: backgroundColor3,
-                        ),
-                        obscureText: true,
-                        decoration: InputDecoration.collapsed(
-                          hintText: 'Your Password',
-                          hintStyle: subtitleTextStyle,
-                        ),
-                      ),
-                    )
-                  ],
+              height: 55,
+              child: TextField(
+                controller: passwordController,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  fillColor: Colors.grey[200],
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.deepPurple, width: 1.5),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
               ),
             ),
@@ -216,7 +197,7 @@ class _SignInScreenState extends State<SignInScreen> {
     }
 
     return Scaffold(
-        backgroundColor: backgroundColor1,
+        backgroundColor: Colors.grey[300],
         body: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Container(
