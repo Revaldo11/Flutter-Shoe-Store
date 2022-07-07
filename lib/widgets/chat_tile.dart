@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/models/message_model.dart';
 import 'package:myshoe/models/product_model.dart';
 import 'package:myshoe/screens/detail_chat_screen.dart';
 import 'package:myshoe/theme.dart';
@@ -6,7 +7,10 @@ import 'package:myshoe/theme.dart';
 class ChatTile extends StatelessWidget {
   const ChatTile({
     Key? key,
+    required this.message,
   }) : super(key: key);
+
+  final MessageModel message;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +47,7 @@ class ChatTile extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Good night, This item is on...',
+                        message.message,
                         style: secondaryTextStyle.copyWith(
                           fontSize: 14,
                           fontWeight: light,

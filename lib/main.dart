@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:myshoe/providers/auth_povider.dart';
 import 'package:myshoe/providers/cart_provider.dart';
+import 'package:myshoe/providers/page_provider.dart';
 import 'package:myshoe/providers/product_provider.dart';
 import 'package:myshoe/providers/transaction_provider.dart';
 import 'package:myshoe/providers/wishlist_provider.dart';
@@ -42,6 +43,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => TransactionProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => PageProvider(),
         ),
       ],
       child: MaterialApp(

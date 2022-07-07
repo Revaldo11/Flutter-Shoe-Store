@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/providers/page_provider.dart';
 import 'package:myshoe/providers/wishlist_provider.dart';
 import 'package:myshoe/theme.dart';
 import 'package:myshoe/widgets/wishlist_buble.dart';
@@ -10,6 +11,7 @@ class WishlistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+    PageProvider pageProvider = Provider.of<PageProvider>(context);
     Widget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
@@ -58,7 +60,9 @@ class WishlistPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    pageProvider.currentIndex = 0;
+                  },
                   child: Text(
                     'Explore Store',
                     style: primaryTextStyle.copyWith(

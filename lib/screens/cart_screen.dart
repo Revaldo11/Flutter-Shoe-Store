@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myshoe/providers/cart_provider.dart';
+import 'package:myshoe/providers/page_provider.dart';
 import 'package:provider/provider.dart';
 import '../theme.dart';
 import '../widgets/cart_card.dart';
@@ -10,6 +11,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+    PageProvider pageProvider = Provider.of<PageProvider>(context);
     PreferredSizeWidget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
@@ -47,8 +49,7 @@ class CartScreen extends StatelessWidget {
             SizedBox(height: 20),
             TextButton(
               onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, '/home', (route) => false);
+                pageProvider.currentIndex = 0;
               },
               style: TextButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 24),

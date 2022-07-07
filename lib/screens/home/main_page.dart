@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:myshoe/providers/page_provider.dart';
 import 'package:myshoe/screens/cart_screen.dart';
 import 'package:myshoe/screens/home/chat.dart';
 import 'package:myshoe/screens/home/home.dart';
 import 'package:myshoe/screens/home/profile_page.dart';
 import 'package:myshoe/screens/home/wishlist_page.dart';
 import 'package:myshoe/theme.dart';
+import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -14,10 +16,10 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
+    PageProvider pageProvider = Provider.of<PageProvider>(context);
+
     Widget customBottomNav() {
       return Container(
         decoration: BoxDecoration(boxShadow: [
@@ -37,11 +39,9 @@ class _MainPageState extends State<MainPage> {
         child: BottomAppBar(
           clipBehavior: Clip.antiAlias,
           child: BottomNavigationBar(
-            currentIndex: currentIndex,
+            currentIndex: pageProvider.currentIndex,
             onTap: (value) {
-              setState(() {
-                currentIndex = value;
-              });
+              pageProvider.currentIndex = value;
             },
             backgroundColor: backgroundColor1,
             type: BottomNavigationBarType.fixed,
@@ -55,7 +55,9 @@ class _MainPageState extends State<MainPage> {
                   margin: EdgeInsets.only(top: 20, bottom: 10),
                   child: Image.asset(
                     'assets/icon_home.png',
-                    color: currentIndex == 0 ? primaryColor : Color(0xff808191),
+                    color: pageProvider.currentIndex == 0
+                        ? primaryColor
+                        : Color(0xff808191),
                     width: 21,
                   ),
                 ),
@@ -66,7 +68,9 @@ class _MainPageState extends State<MainPage> {
                   margin: EdgeInsets.only(top: 20, bottom: 10),
                   child: Image.asset(
                     'assets/icon_chat.png',
-                    color: currentIndex == 1 ? primaryColor : Color(0xff808191),
+                    color: pageProvider.currentIndex == 1
+                        ? primaryColor
+                        : Color(0xff808191),
                     width: 20,
                   ),
                 ),
@@ -77,7 +81,9 @@ class _MainPageState extends State<MainPage> {
                   margin: EdgeInsets.only(top: 20, bottom: 10),
                   child: Image.asset(
                     'assets/icon_cart_white.png',
-                    color: currentIndex == 2 ? primaryColor : Color(0xff808191),
+                    color: pageProvider.currentIndex == 2
+                        ? primaryColor
+                        : Color(0xff808191),
                     width: 20,
                   ),
                 ),
@@ -88,7 +94,9 @@ class _MainPageState extends State<MainPage> {
                   margin: EdgeInsets.only(top: 20, bottom: 10),
                   child: Image.asset(
                     'assets/icon_favorite.png',
-                    color: currentIndex == 3 ? primaryColor : Color(0xff808191),
+                    color: pageProvider.currentIndex == 3
+                        ? primaryColor
+                        : Color(0xff808191),
                     width: 20,
                   ),
                 ),
@@ -99,7 +107,9 @@ class _MainPageState extends State<MainPage> {
                   margin: EdgeInsets.only(top: 20, bottom: 10),
                   child: Image.asset(
                     'assets/icon_profile.png',
-                    color: currentIndex == 4 ? primaryColor : Color(0xff808191),
+                    color: pageProvider.currentIndex == 4
+                        ? primaryColor
+                        : Color(0xff808191),
                     width: 18,
                   ),
                 ),
@@ -112,7 +122,7 @@ class _MainPageState extends State<MainPage> {
     }
 
     Widget body() {
-      switch (currentIndex) {
+      switch (pageProvider.currentIndex) {
         case 0:
           return HomePage();
         case 1:
@@ -130,7 +140,8 @@ class _MainPageState extends State<MainPage> {
 
     return Scaffold(
       bottomNavigationBar: customBottomNav(),
-      backgroundColor: currentIndex == 0 ? backgroundColor1 : backgroundColor3,
+      backgroundColor:
+          pageProvider.currentIndex == 0 ? backgroundColor1 : backgroundColor3,
       body: body(),
     );
   }
