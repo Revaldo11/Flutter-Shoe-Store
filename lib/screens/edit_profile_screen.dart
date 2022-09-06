@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:myshoe/models/users_model.dart';
 import 'package:myshoe/providers/auth_povider.dart';
@@ -136,20 +138,46 @@ class EditProfileScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              width: 100,
-              height: 100,
-              margin: EdgeInsets.only(
-                top: defaultMargin,
-              ),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: NetworkImage(
-                      'https://github.com/Revaldo11/appStore-client/blob/develop/assets/image_profile.png?raw=true'),
+            Stack(
+              children: [
+                Container(
+                  width: 100,
+                  height: 100,
+                  margin: EdgeInsets.only(
+                    top: defaultMargin,
+                  ),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: NetworkImage(
+                          'https://github.com/Revaldo11/appStore-client/blob/develop/assets/image_profile.png?raw=true'),
+                    ),
+                  ),
                 ),
-              ),
+                Positioned(
+                  right: 0,
+                  bottom: 0,
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey.withOpacity(0.7),
+                    ),
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.edit,
+                        size: 20,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        log('edit');
+                      },
+                    ),
+                  ),
+                ),
+              ],
             ),
             nameInput(),
             usernameInput(),
