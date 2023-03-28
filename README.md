@@ -5,6 +5,7 @@ class Revaldo extends FlutterProject {
     return {
       "title": "Flutter E-Commerce with Laravel Back-End",
       "description": "Make an E-Commerce application that uses Flutter Technology and Laravel for API",
+      "API": "https://shamo-backend.buildwithangga.id/api"
     }
 }
 ```
