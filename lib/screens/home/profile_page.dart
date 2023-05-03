@@ -33,7 +33,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     image: NetworkImage(
-                        'https://github.com/Revaldo11/appStore-client/blob/develop/assets/image_profile.png?raw=true'),
+                      'https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+                    ),
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),

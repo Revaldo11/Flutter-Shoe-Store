@@ -131,6 +131,7 @@ class _SignInScreenState extends State<SignInScreen> {
             SizedBox(
               height: 55,
               child: TextField(
+                obscureText: true,
                 controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
