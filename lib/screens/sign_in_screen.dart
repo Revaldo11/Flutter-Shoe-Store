@@ -87,7 +87,7 @@ class _SignInScreenState extends State<SignInScreen> {
             SizedBox(
               height: 12.0,
             ),
-            Container(
+            SizedBox(
               height: 55,
               child: TextField(
                 controller: emailController,
@@ -128,10 +128,11 @@ class _SignInScreenState extends State<SignInScreen> {
             SizedBox(
               height: 12.0,
             ),
-            Container(
+            SizedBox(
               height: 55,
               child: TextField(
                 controller: passwordController,
+                obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'Password',
                   fillColor: Colors.grey[200],

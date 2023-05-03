@@ -98,7 +98,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             SizedBox(
               height: 12.0,
             ),
-            Container(
+            SizedBox(
               height: 55,
               child: TextField(
                 controller: nameController,
@@ -139,7 +139,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             SizedBox(
               height: 12.0,
             ),
-            Container(
+            SizedBox(
               height: 55,
               child: TextField(
                 controller: usernameController,
@@ -180,7 +180,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             SizedBox(
               height: 12.0,
             ),
-            Container(
+            SizedBox(
               height: 55,
               child: TextField(
                 controller: emailController,
@@ -221,10 +221,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
             SizedBox(
               height: 12.0,
             ),
-            Container(
+            SizedBox(
               height: 55,
               child: TextField(
                 controller: passwordController,
+                obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'Password',
                   fillColor: Colors.grey[200],
