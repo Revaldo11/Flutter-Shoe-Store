@@ -226,7 +226,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: TextField(
                 obscureText: true,
                 controller: passwordController,
-                obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'Password',
                   fillColor: Colors.grey[200],

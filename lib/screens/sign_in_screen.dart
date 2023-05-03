@@ -133,7 +133,6 @@ class _SignInScreenState extends State<SignInScreen> {
               child: TextField(
                 obscureText: true,
                 controller: passwordController,
-                obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'Password',
                   fillColor: Colors.grey[200],
