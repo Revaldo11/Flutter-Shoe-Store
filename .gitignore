@@ -2,7 +2,6 @@ web/
 windows/
 pubspec.lock
 
-
 # Miscellaneous
 *.class
 *.log
@@ -49,3 +48,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# FVM Version Cache
+.fvm/
